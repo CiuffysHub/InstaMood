@@ -1,0 +1,44 @@
+extends layout
+
+block append head
+  meta(name='mphtools-feature' content='compatibilityUI, cameraPrivacyPopup, compatibilityAutoCheck')
+
+block content
+  h1= title
+  p(id='dynamic') Make a face...
+  div(id='containerCamera')
+    video(autoplay='true' id='videoElement')
+    button(type='submit' name='snap' id='snap')
+      img(src='images/snap.png' width='50px' height='50px')
+    canvas(id='canvasCamera')
+
+block scripts
+  script
+    include camera.js
+  script(src='https://sdk.morphcast.com/mphtools/v1.0/mphtools.js')
+  script(src='https://ai-sdk.morphcast.com/v1.14/ai-sdk.js')
+  script.
+    CY.loader()
+    .licenseKey("f83f9d80001b097b852fb32d5fce39b5a80239b57050")
+    .addModule(CY.modules().FACE_DETECTOR.name)
+    .addModule(CY.modules().FACE_EMOTION.name)
+    .load()
+    .then(({ start, stop }) => start());
+    var mood = 'Neutral';
+    window.addEventListener(CY.modules().FACE_EMOTION.eventName, (evt) => {
+    var dynamic = document.getElementById("dynamic");
+    var sentence = evt.detail.output.dominantEmotion;
+    switch(sentence){
+      case "Happy":
+        sentence = "Happy: Il sorriso è il sale della vita - Tonino Guerra";
+        document.getElementById("videoElement").classList.add('saturated');
+        document.getElementById("videoElement").classList.remove('grayscale');
+        break;
+      case "Sad":
+        sentence = "Sad: Dio è morto - Friedrich Wilhelm Nietzsche";
+        document.getElementById("videoElement").classList.add('grayscale');
+        document.getElementById("videoElement").classList.remove('saturated');
+        break;
+    };
+    dynamic.innerHTML = sentence;
+    });

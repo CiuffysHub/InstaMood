@@ -1,0 +1,32 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#containerCamera {
+	margin: 0px auto;
+	width: 500px;
+	height: 375px;
+	border: 10px #333 solid;
+}
+
+#videoElement {
+	width:  500px;
+	height: 375px;
+	background-color: #666;
+}
+
+#canvasCamera {
+	width:  500px;
+	height: 375px;
+}
+
+#videoElement.grayscale {
+	filter: grayscale(1);
+	-webkit-filter: grayscale(1); 
+	filter: grayscale(100%); 
+}
