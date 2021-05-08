@@ -18,6 +18,17 @@ var canvas = document.getElementById("canvasCamera");
         var ctx = canvas.getContext('2d');
         ctx.filter = 'grayscale(1)';
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        
+        drawing = new Image();
+        drawing.src = "images/sad.png";
+        drawing .onload = function(){ctx.drawImage(drawing,0,0);};
+
+
+
+        
+  
+ 
+  
 
         var download = document.getElementById('link');
 		download.addEventListener('click', function(ev) {
