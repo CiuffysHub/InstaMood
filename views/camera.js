@@ -19,13 +19,11 @@ var canvas = document.getElementById("canvasCamera");
         ctx.filter = 'grayscale(1)';
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-        var download = document.createElement('a');
-		download.innerHTML = 'Download the image';
+        var download = document.getElementById('link');
 		download.addEventListener('click', function(ev) {
   		download.href = canvas.toDataURL();
   		download.download = 'img.png';
 		}, false);   
-		document.body.appendChild(download); 
 
     };
 
