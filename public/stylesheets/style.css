@@ -30,3 +30,16 @@ a {
 	-webkit-filter: grayscale(1); 
 	filter: grayscale(100%); 
 }
+
+#download{
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: 12px 30px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+#download:hover {
+  background-color: RoyalBlue;
+}

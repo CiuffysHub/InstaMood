@@ -2,6 +2,7 @@ extends layout
 
 block append head
   meta(name='mphtools-feature' content='compatibilityUI, cameraPrivacyPopup, compatibilityAutoCheck')
+  link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
 
 block content
   h1= title
@@ -10,6 +11,8 @@ block content
     video(autoplay='true' id='videoElement')
     button(type='submit' name='snap' id='snap')
       img(src='images/snap.png' width='50px' height='50px')
+    button(id="download") 
+      i(id="fa fa-download") Download
     canvas(id='canvasCamera')
 
 block scripts
