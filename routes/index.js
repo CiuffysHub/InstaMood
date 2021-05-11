@@ -14,7 +14,7 @@ router.get('/recognition', function(req, res, next) {
 
 
 router.get('/story', function(req, res, next) {
-    require('./image-feed.js');
+    require('/public/javascripts/image-feed.js');
   res.render('story', { title: 'Express' });
 });
 

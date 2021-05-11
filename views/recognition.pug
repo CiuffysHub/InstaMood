@@ -17,10 +17,9 @@ block content
     canvas(id='canvasCamera')
 
 block scripts
-  script
-    include camera_stream.js
   script(src='https://sdk.morphcast.com/mphtools/v1.0/mphtools.js')
   script(src='https://ai-sdk.morphcast.com/v1.14/ai-sdk.js')
   script
-    include mood_filters_preview.js
-    include snap_picture.js
+    include /public/javascripts/mood_filters_preview.js
+    include /public/javascripts/snap_picture.js
+    include /public/javascripts/camera_stream.js
