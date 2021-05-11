@@ -1,6 +1,7 @@
  document.addEventListener('DOMContentLoaded', function() {
     var button = document.getElementById("snap");
     var video = document.getElementById("videoElement");
+    var canvas = document.getElementById("canvasCamera");
     button.onclick = function(event) {
         var ctx = canvas.getContext('2d');
         ctx.filter = 'grayscale(1)';

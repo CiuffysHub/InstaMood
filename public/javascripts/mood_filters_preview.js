@@ -8,16 +8,17 @@ CY.loader()
     window.addEventListener(CY.modules().FACE_EMOTION.eventName, (evt) => {
     var dynamic = document.getElementById("dynamic");
     var sentence = evt.detail.output.dominantEmotion;
+    var preview = document.getElementById("videoElement");
     switch(sentence){
       case "Happy":
         sentence = "Happy: Il sorriso è il sale della vita - Tonino Guerra";
-        document.getElementById("videoElement").classList.add('saturated');
-        document.getElementById("videoElement").classList.remove('grayscale');
+        preview.classList.add('saturated');
+        preview.classList.remove('grayscale');
         break;
       case "Sad":
         sentence = "Sad: Dio è morto - Friedrich Wilhelm Nietzsche";
-        document.getElementById("videoElement").classList.add('grayscale');
-        document.getElementById("videoElement").classList.remove('saturated');
+        preview.classList.add('grayscale');
+        preview.classList.remove('saturated');
         break;
     };
     dynamic.innerHTML = sentence;

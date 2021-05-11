@@ -1,5 +1,4 @@
 var video = document.querySelector("#videoElement");
-var canvas = document.getElementById("canvasCamera");
 
     if (navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices.getUserMedia({ video: true })
