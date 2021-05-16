@@ -1,34 +1,4 @@
-var express = require('express');
-var router = express.Router();
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
-router.get('/recognition', function(req, res, next) {
-  /*
-  res.sendFile(path.resolve('./public/recognition.html'));*/
-  res.render('recognition', { title: 'Express' });
-});
-
-
-router.get('/story', function(req, res, next) {
-
-
-
-
-
-
-//Post story function, if you use require() it works only once
-
-
-
-
-
-
-
-	"use strict";
+ "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -74,7 +44,6 @@ var fs_1 = require("fs");
 var util_1 = require("util");
 var readFileAsync = util_1.promisify(fs_1.readFile);
 var ig = new instagram_private_api_1.IgApiClient();
-ig.state.generateDevice(process.env.IG_USERNAME);
 function login() {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
@@ -96,16 +65,8 @@ function login() {
     var _d, _e;
     return __generator(this, function (_f) {
         switch (_f.label) {
-            case 0: return [4 /*yield*/, ig.simulate.preLoginFlow()];
+            case 0: return [4 /*yield*/, login()];
             case 1:
-                _f.sent();
-                //await ig.account.login(process.env.IG_USERNAME, process.env.IG_PASSWORD);
-                return [4 /*yield*/, login()];
-            case 2:
-                //await ig.account.login(process.env.IG_USERNAME, process.env.IG_PASSWORD);
-                _f.sent();
-                return [4 /*yield*/, ig.simulate.postLoginFlow()];
-            case 3:
                 _f.sent();
                 path = './public/images/myPicture.jpg';
                 _a = {
@@ -117,7 +78,7 @@ function login() {
                 _c = (_b = ig.publish).photo;
                 _d = {};
                 return [4 /*yield*/, readFileAsync(path)];
-            case 4:
+            case 2:
                 // read the file into a Buffer
                 _d.file = _f.sent(),
                     // optional, default ''
@@ -125,7 +86,7 @@ function login() {
                 _e = {};
                 // tag the user 'instagram' @ (0.5 | 0.5)
                 return [4 /*yield*/, generateUsertagFromName('instagram', 0.5, 0.5)];
-            case 5: return [4 /*yield*/, _c.apply(_b, [(
+            case 3: return [4 /*yield*/, _c.apply(_b, [(
                     // optional
                     _d.usertags = (_e["in"] = [
                         // tag the user 'instagram' @ (0.5 | 0.5)
@@ -133,7 +94,7 @@ function login() {
                     ],
                         _e),
                         _d)])];
-            case 6:
+            case 4:
                 publishResult = _f.sent();
                 console.log(publishResult);
                 return [2 /*return*/];
@@ -173,23 +134,3 @@ function generateUsertagFromName(name, x, y) {
  * @param max
  */
 var clamp = function (value, min, max) { return Math.max(Math.min(value, max), min); };
-
-
-
-
-
-
-
-
-//end
-
-
-
-
-
-
-
-  	res.render('story', { title: 'Express' });
-});
-
-module.exports = router;
