@@ -9,17 +9,22 @@ CY.loader()
     var dynamic = document.getElementById("dynamic");
     var sentence = evt.detail.output.dominantEmotion;
     var preview = document.getElementById("videoElement");
-    switch(sentence){
-      case "Happy":
-        sentence = "Happy: Il sorriso è il sale della vita - Tonino Guerra";
-        preview.classList.add('saturated');
-        preview.classList.remove('grayscale');
-        break;
-      case "Sad":
-        sentence = "Sad: Dio è morto - Friedrich Wilhelm Nietzsche";
-        preview.classList.add('grayscale');
-        preview.classList.remove('saturated');
-        break;
-    };
+
+    var classes = {
+  		Happy: 'saturated',
+  		Sad: 'grayscale'
+	};
+
+	var sentences = {
+		Happy: 'Happy: Il sorriso è il sale della vita - Tonino Guerra',
+		Sad: 'Sad: Dio è morto - Friedrich Wilhelm Nietzsche'
+	}
+
+    for (var c in classes){
+    	preview.classList.remove(classes[c]);
+    }
+    preview.classList.add(classes[sentence])
+    sentence = sentences[sentence];
+
     dynamic.innerHTML = sentence;
     });
