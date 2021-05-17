@@ -9,7 +9,7 @@
         
         drawing = new Image();
         drawing.src = "images/sad.png";
-        drawing .onload = function(){ctx.drawImage(drawing,0,0, 100, 50);};
+        drawing .onload = function(){ctx.drawImage(drawing,0,0,drawing.width*8,drawing.height*8);};
 
         var download = document.getElementById('link');
 		download.addEventListener('click', function(ev) {
