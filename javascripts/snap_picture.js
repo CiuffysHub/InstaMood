@@ -1,11 +1,5 @@
  document.addEventListener('DOMContentLoaded', function() {
 
-   var classes = {
-      Happy: 'saturated',
-      Sad: 'grayscale',
-      Disgust: 'hue-rotate'
-   };
-
     var button = document.getElementById("snap");
     var video = document.getElementById("videoElement");
     var canvas = document.getElementById("canvasCamera");
