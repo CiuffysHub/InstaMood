@@ -31,6 +31,25 @@ a {
 	filter: grayscale(100%); 
 }
 
+.invert {
+	filter: invert(100%); 
+}
+
+.sepia {
+	filter: sepia(1);
+	-webkit-filter: sepia(1); 
+	filter: sepia(100%); 
+}
+
+.hue-rotate-green {
+	filter: hue-rotate(90deg);
+}
+
+.red-filter {
+	-webkit-filter: invert(40%) grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-50deg) saturate(400%) contrast(2);
+      filter: grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-50deg) saturate(600%) contrast(0.8);
+}
+
 #download{
   background-color: DodgerBlue;
   border: none;

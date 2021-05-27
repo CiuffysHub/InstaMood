@@ -3,14 +3,12 @@ const fs = require('fs')
 const url = require('url');
 const path = require('path');
 
-const story = require(path.resolve('./javascripts/image-feed-simulatelogin.js'))
-
 http.createServer(function (req,res){
 
 				var request = url.parse(req.url, true);
   				var action = request.pathname;
 
-                if(req.url === '/index.html') {
+                if(req.url === '/') {
                 fs.readFile('index.html',function(err,data){
                 res.writeHead(200,{'Content-Type': 'text/html'});
                 res.write(data);
