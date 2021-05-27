@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+if ($_GET['password']==='ok')
+  $_SESSION['username'] = 'marco';
+
+if ($_GET['logout']==='si'){
+  session_unset();
+  session_destroy();
+}
+
+echo $_SESSION['username'];
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
