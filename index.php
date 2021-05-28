@@ -1,4 +1,32 @@
+<<<<<<< HEAD
 
+=======
+<?php
+session_start();
+
+include($_SERVER['DOCUMENT_ROOT']."/php/login.php");
+
+if (isset($_GET['logout'])){
+  session_unset();
+  session_destroy();
+}
+
+if(isset($_SESSION['username'])){
+  echo 'you are logged in as '.$_SESSION['username'];
+}
+
+elseif (isset($_GET['password'])&&isset($_GET['username'])){
+    if (login($_GET['username'],$_GET['password'])===True){
+      echo 'you are logged in as '.$_GET['username'];
+      $_SESSION['username']='marco';
+    }
+    else
+      echo 'wrong credentials';
+}
+
+
+?>
+>>>>>>> dee24f863e4bf1444455a8b5ebd5e6bfcb8da02b
 <!DOCTYPE html>
 <html>
 <head>
