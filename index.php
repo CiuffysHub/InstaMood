@@ -24,9 +24,20 @@ elseif (isset($_GET['password'])&&isset($_GET['username'])){
       echo 'wrong credentials';
 }
 
+//ELEMENTI DEL TUTORIAL,OVVIAMENTE IN INDEX VA MESSO UN PULSANTE PER FARE IL LOGOUT
+if(isset($_SESSION['userlogin'])){
+  header("Location: index.php");
+  }
 
+if (isset($_GET['logout'])) {
+  session_destroy();
+  unser($_SESSION);
+  HEADER("Location: login_page.php")
+
+}
 ?>
 >>>>>>> dee24f863e4bf1444455a8b5ebd5e6bfcb8da02b
+
 <!DOCTYPE html>
 <html>
 <head>
