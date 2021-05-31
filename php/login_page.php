@@ -35,13 +35,13 @@
 								<div class="input-group-append">
 									<span class="input-group-text"><i class="fas fa-user"></i></span>
 								</div>
-								<input type="text" name="" class="form-control input_user" value="" placeholder="username">
+								<input type="text" id="username" class="form-control input_user" value="" placeholder="username">
 							</div>
 							<div class="input-group mb-2">
 								<div class="input-group-append">
 									<span class="input-group-text"><i class="fas fa-key"></i></span>
 								</div>
-								<input type="password" name="" class="form-control input_pass" value="" placeholder="password">
+								<input type="password" id="password" class="form-control input_pass" value="" placeholder="password">
 							</div>
 							<div class="form-group">
 								<div class="custom-control custom-checkbox">
@@ -74,8 +74,8 @@
 					
 					var valid = this.form.checkValidity();
 					if(valid){
-						var username = $('username').val();
-						var password = $('password').val();
+						var username = $('#username').val();
+						var password = $('#password').val();
 					}
 
 					e.preventDefault();
@@ -86,7 +86,7 @@
 						data: {username: username, password:password},
 						success : function(data){
 							if($.trim(data) === "1"){
-								setTimeout(' window.location.href = "index.php"', 2000)
+								setTimeout(' window.location.href = "/index.php"', 2000)
 							}
 						},
 						error: function(data) {
