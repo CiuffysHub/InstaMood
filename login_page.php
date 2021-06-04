@@ -100,31 +100,6 @@
 			});
 		</script>
 
-		<!-- REGISTER BUTTON LOGIC-->
-		<script>
-			$(function(){
-				$('#register').click(function(e){
-					
-					var valid = this.form.checkValidity();
-					if(valid){
-						var username = $('username').val();
-						var password = $('password').val();
-					}
-
-					e.preventDefault();
-
-					$.ajax({
-						type: 'POST',
-						url: 'register_logic.php',
-						data: {username: username, password:password},
-						success : function(data){
-							if($.trim(data) === "1"){
-								setTimeout(' window.location.href = "/index.php"', 2000)
-							}
-						},
-						error: function(data) {
-							alert('try again');
-		</script>
 
 	</body>
 </html>
