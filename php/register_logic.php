@@ -1,24 +1,26 @@
 <?php
 session_start();
-require_once('config.php');
 
-echo "in register_logic";
+require_once('config.php');
 
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-$data = array($username);
-$sql = "SELECT * FROM users WHERE email=? LIMIT 1";
-$stmtselect = $db->prepare($sql);
-$stmtselect->execute($data);
-$rows_number = $stmtselect->fetchColumn();
+$sql = "SELECT COUNT(1) FROM users WHERE email=? LIMIT 1";
+$query = $db->prepare($sql);
+$query->bind_param("s", $username);
+$query->execute();
+$query->bind_result($count);
+$query->fetch();
+$query->close();
 
-if ($rows_number==0) {
+if ($count==0) {
 
-	$sql = "INSERT INTO users(email,password) VALUES(?,?)";
-	$data = array($username,$password);
-	$stmtselect = $db->prepare($sql);
-	$stmtselect->execute($data);
+	$sql = "INSERT INTO users(email,password) VALUES( ? , ? )";
+	$query = $db->prepare($sql);
+	$query->bind_param("ss", $username,$password);
+	$query->execute();
+	$query->close();
 
 }
 else{

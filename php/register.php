@@ -59,8 +59,12 @@
 						type: 'POST',
 						url: 'register_logic.php',
 						data: {username: username, password:password},
+						success : function(data){
+							if($.trim(data) !== "ERROR"){
+								setTimeout(' window.location.href = "login_page.php"', 2000)
+							}
+						}
 					});
-					setTimeout(window.location.href='login_page.php',10000);
 				});
 			
 			});

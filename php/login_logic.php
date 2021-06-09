@@ -6,18 +6,18 @@ require_once('config.php');
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-$data = array($username,$password);
-$sql = "SELECT * FROM users WHERE email = ? AND password = ? LIMIT 1";
-$stmtselect = $db->prepare($sql);
-$stmtselect->execute($data);
 
-if($stmtselect->rowCount()>0){
+$sql = "SELECT COUNT(1) FROM users WHERE email = ? AND password = ? LIMIT 1";
 
-	$_SESSION['userlogin'] = $user;
-	echo "1";
+$query = $db->prepare($sql);
+$query->bind_param("ss", $username, $password);
+$query->execute();
+$query->bind_result($count);
+$query->fetch();
 
+if ($count==1){
+	echo "SUCCESS";
 }
-
 else{
-	echo "problems happened";
+	echo "ERROR";
 }
