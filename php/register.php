@@ -57,7 +57,7 @@
 
 					$.ajax({
 						type: 'POST',
-						url: 'register_logic.php',
+						url: '/php/register_logic.php',
 						data: {username: username, password:password},
 
 
