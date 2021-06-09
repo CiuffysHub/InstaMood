@@ -3,13 +3,12 @@ session_start();
 require_once('config.php');
 
 
-$username = $_POST['username'];
-$password = $_POST['password'];
+$username = $_POST['username']
+$password = $_POST['password']
 
 $sql = "SELECT * FROM users WHERE email = ? AND password = ? LIMIT 1";
 $stmtselect = $db->prepare($sql);
-$data = array($username, $password);
-$result = $stmtselect->execute($data);
+$result = $stmtselect->execute([]);
 
 if($result){
 	$user = $stmtselect->fetch(PDO::FETCH_ASSOC);

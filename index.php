@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(!isset($_SESSION['userlogin']))
+  header("location: /php/login_page.php");
+
+?>
 <!DOCTYPE html>
 <html>
 <head>

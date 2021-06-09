@@ -35,13 +35,13 @@
 								<div class="input-group-append">
 									<span class="input-group-text"><i class="fas fa-user"></i></span>
 								</div>
-								<input type="text" id="username" class="form-control input_user" value="" placeholder="username">
+								<input type="text" name="" class="form-control input_user" value="" placeholder="username">
 							</div>
 							<div class="input-group mb-2">
 								<div class="input-group-append">
 									<span class="input-group-text"><i class="fas fa-key"></i></span>
 								</div>
-								<input type="password" id="password" class="form-control input_pass" value="" placeholder="password">
+								<input type="password" name="" class="form-control input_pass" value="" placeholder="password">
 							</div>
 							<div class="form-group">
 								<div class="custom-control custom-checkbox">
@@ -57,7 +57,7 @@
 			
 					<div class="mt-4">
 						<div class="d-flex justify-content-center links">
-							Don't have an account? <a href="#" class="ml-2">Sign Up</a>
+							Don't have an account? <a href="register.php" class="ml-2">Sign Up</a>
 						</div>
 						<div class="d-flex justify-content-center links">
 							<a href="#">Forgot your password?</a>
@@ -67,15 +67,15 @@
 			</div>
 		</div>
 
-		<!-- BUTTON LOGIC-->
+		<!-- LOGIN BUTTON LOGIC-->
 		<script>
 			$(function(){
 				$('#login').click(function(e){
 					
 					var valid = this.form.checkValidity();
 					if(valid){
-						var username = $('#username').val();
-						var password = $('#password').val();
+						var username = $('username').val();
+						var password = $('password').val();
 					}
 
 					e.preventDefault();
@@ -99,5 +99,7 @@
 			
 			});
 		</script>
+
+
 	</body>
 </html>
