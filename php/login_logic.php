@@ -3,22 +3,19 @@ session_start();
 require_once('config.php');
 
 
-$username = $_POST['username']
-$password = $_POST['password']
+$username = $_POST['username'];
+$password = $_POST['password'];
 
+$data = array($username,$password);
 $sql = "SELECT * FROM users WHERE email = ? AND password = ? LIMIT 1";
 $stmtselect = $db->prepare($sql);
-$result = $stmtselect->execute([]);
+$stmtselect->execute($data);
 
-if($result){
-	$user = $stmtselect->fetch(PDO::FETCH_ASSOC);
-	if($stmtselect->rowCount()>0){
-		$_SESSION['userlogin'] = $user;
-		echo "1";
-	}
-	else{
-		echo "no user fit";
-	}
+if($stmtselect->rowCount()>0){
+
+	$_SESSION['userlogin'] = $user;
+	echo "1";
+
 }
 
 else{

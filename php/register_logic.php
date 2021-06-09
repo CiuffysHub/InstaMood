@@ -2,28 +2,26 @@
 session_start();
 require_once('config.php');
 
+echo "in register_logic";
+
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-$user_check_query = "SELECT * FROM users WHERE username='$username' LIMIT 1";
-$result = mysqli_query($db, $user_check_query);
-$user = mysqli_fetch_assoc($result);
+$data = array($username);
+$sql = "SELECT * FROM users WHERE email=? LIMIT 1";
+$stmtselect = $db->prepare($sql);
+$stmtselect->execute($data);
+$rows_number = $stmtselect->fetchColumn();
 
-if ($user) { // if user exists
-	if ($user['username'] === $username) {
-  		array_push($errors, "Username already exists");
-}
-if (count($errors) == 0) {
+if ($rows_number==0) {
 
 	$sql = "INSERT INTO users(email,password) VALUES(?,?)";
+	$data = array($username,$password);
 	$stmtselect = $db->prepare($sql);
-	$stmtselect->bind_param("ss", $username, $password);
-
-	$result = $stmtselect->execute();
-	
-
+	$stmtselect->execute($data);
 
 }
 else{
-	alert("This username is already taken")
+	echo "ERROR";
 }
+?>

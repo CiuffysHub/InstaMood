@@ -57,10 +57,8 @@
 
 					$.ajax({
 						type: 'POST',
-						url: '/php/register_logic.php',
+						url: 'register_logic.php',
 						data: {username: username, password:password},
-
-
 					});
 					setTimeout(window.location.href='login_page.php',10000);
 				});
