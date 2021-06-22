@@ -25,6 +25,7 @@ session_start();
         <i id="fa fa-download">Download</i>
       </button>
     </a>
+    <a href="/php/logout.php">Logout</a>
     <canvas id='canvasCamera' width='8000px' height='6000px'></canvas>
   </div>
   <script type="text/javascript" src="https://sdk.morphcast.com/mphtools/v1.0/mphtools.js"></script>

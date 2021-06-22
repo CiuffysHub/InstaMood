@@ -30,6 +30,7 @@
 						</div>
 					</div>
 					<div class="d-flex justify-content-center form_container">
+						<div id='wrong_credentials'></div>
 						<form>
 							<div class="input-group mb-3">
 								<div class="input-group-append">
@@ -88,9 +89,12 @@
 							if($.trim(data) === "SUCCESS"){
 								setTimeout(' window.location.href = "/index.php"', 2000)
 							}
+							else{
+								document.getElementById('wrong_credentials').innerHTML = 'Wrong Credentials!';								
+							}
 						},
 						error: function(data) {
-							alert('try again');
+							alert('error');
 						}
 
 
