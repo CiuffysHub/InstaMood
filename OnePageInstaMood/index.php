@@ -1,3 +1,10 @@
+<?php
+session_start();
+//if(!isset($_SESSION['userlogin']))
+//  header("location: /assets/php/login_page.php");
+
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -10,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!--====== Title ======-->
-    <title>Smart - Multi-purpose Landing Page Template</title>
+    <title>Instamood</title>
 
     <!--====== Favicon Icon ======-->
     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/png">
@@ -78,7 +85,7 @@
                     <div class="col-lg-12">
                         <nav class="navbar navbar-expand-lg">
                             <a class="navbar-brand" href="#">
-                                <img src="assets/images/logo.png" alt="Logo">
+                                <img src="assets/images/logo_small.png" alt="Logo">
                             </a>
 
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarEight" aria-controls="navbarEight" aria-expanded="false" aria-label="Toggle navigation">
@@ -119,10 +126,34 @@
                                 <h3 class="title">Scatta una Foto!</h3>
                             </div> <!-- section title -->
                         </div>
+
                     </div> <!-- row -->
                     <div class="row justify-content-center">
+                          <div class="col-xl-2 col-lg-2 col-sm-10 home-text-container">
+                            <div id= home-text-left>
+                                <h4>
+
+                                    Rivela il <br>
+                                    tuo mood <br>
+                                    in camera e...
+                                </h4>
+                            </div>
+                            
+                        </div>
                         <div class="col-xl-7 col-lg-7 col-sm-10">
                             <video autoplay="true" id="videoElement"></video>
+                        </div>
+                          <div class="col-xl-2 col-lg-2 col-sm-10 home-text-container">
+                            <div id= home-text-right>
+                                <h4>
+
+                                    ..condividilo <br>
+                                    con i tuoi <br>
+                                    amici
+                                    
+                                </h4>
+                            </div>
+                            
                         </div>
                     </div> <!-- row -->
                     <div class="row justify-content-center">
@@ -149,7 +180,7 @@
         </div>
         <div class="sidebar-content">
             <div class="sidebar-logo text-center">
-                <a href="#"><img src="assets/images/logo-alt.png" alt="Logo"></a>
+                <a href="#"><img src="assets/images/logo_small_icon_only.png" alt="Logo"></a>
             </div> <!-- logo -->
             <div class="sidebar-menu">
                 <ul>
@@ -179,8 +210,8 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <div class="section-title text-center pb-20">
-                        <h3 class="title">Testimonial</h3>
-                        <p class="text">Stop wasting time and money designing and managing a website that doesn’t get results. Happiness guaranteed!</p>
+                        <h3 class="title">La tua Galleria</h3>
+                        <p class="text">Visualizza i tuoi scatti preferiti e condividi i migliori con i tuoi amici!</p>
                     </div> <!-- section title -->
                 </div>
             </div> <!-- row -->

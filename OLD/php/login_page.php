@@ -12,7 +12,7 @@
     
 	<head>
 		<title>Instamood Login</title>
-		<link rel="stylesheet" href="/stylesheets/style_login.css">
+		<link rel="stylesheet" href="assets/css/style_login.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 		<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -83,7 +83,7 @@
 
 					$.ajax({
 						type: 'POST',
-						url: 'login_logic.php',
+						url: 'assets/php/login_logic.php',
 						data: {username: username, password:password},
 						success : function(data){
 							if($.trim(data) === "SUCCESS"){

@@ -119,6 +119,25 @@ p {
   color: var(--color-text-1);
   margin: 0px; }
 
+.home-text-container {
+  text-align: center;
+}
+
+#home-text-left {
+  text-align: left;
+  display: inline-block;
+}
+
+#home-text-right {
+  text-align: right;
+  display: inline-block;
+  height: 50%;
+  position: absolute;
+  bottom: 0;
+
+ 
+}
+
 .bg_cover {
   background-position: center center;
   background-size: cover;
@@ -638,6 +657,7 @@ p {
   transition: all 0.3s ease-out 0s; }
   .navbar-area .navbar-brand img {
     max-width: 150px; }
+
   @media only screen and (min-width: 768px) and (max-width: 991px) {
     .navbar-area {
       padding: 10px 0; } }
