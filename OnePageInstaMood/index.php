@@ -121,30 +121,6 @@ session_start();
         <div id="home" class="slider-area">
             <div class="bd-example">
                 <div class="container" style="margin-top: 4em; margin-bottom: 5%;">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-6">
-                            <div class="section-title text-center pb-20">
-                                <h3 class="title">Scatta una Foto!</h3>
-                            </div> <!-- section title -->
-                        </div>
-
-                    </div> <!-- row -->
-                    <div class="row justify-content-center">
-                          <div class="col-xl-2 col-lg-2 col-sm-10 home-text-container">
-                            <div id= home-text-left>
-                                <h4>
-
-                                    Rivela il <br>
-                                    tuo mood <br>
-                                    in camera e...
-                                </h4>
-                            </div>
-                            
-                        </div>
-
-                        <div class="col-xl-1 col-lg-1"></div>
-
-                        <div class="col-xl-7 col-lg-7 col-sm-10">
                             <!-- <video autoplay="true" id="videoElement"></video> -->
                             <div id="container">
                                   <div id="vid_container">
@@ -167,29 +143,7 @@ session_start();
                                     ></button>
                                   </div>
                                 </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4">
-                            <button class="main-btn rounded-three carousel-btn rounded-buttons" input="submit" name="snap" id="snap" href="#">SCATTA</button>
-                        </div>
-                          <div class="col-xl-2 col-lg-2 col-sm-10 home-text-container">
-                            <div id= home-text-right>
-                                <h4>
-
-                                    ..condividilo <br>
-                                    con i tuoi <br>
-                                    amici
-                                    
-                                </h4>
-                            </div>
-                            
-                        </div>
                     </div> <!-- row -->
-                    <div class="row justify-content-center">
-                        <ul class="carousel-btn rounded-buttons">
-                            <li><button class="main-btn rounded-three" input="submit" name="snap" id="snap" href="#">SCATTA</button></li>
-                        </ul>
-
-                    </div>
                     <div class="row justify-content-center">
                         <canvas id='canvasCamera' width='8000px' height='6000px'></canvas>
                     </div>
