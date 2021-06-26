@@ -121,6 +121,7 @@ session_start();
         <div id="home" class="slider-area">
             <div class="bd-example">
                 <div class="container" style="margin-top: 4em; margin-bottom: 5%;">
+
                     <div class="row justify-content-center">
                         <div class="col-lg-6">
                             <div class="section-title text-center pb-20">
@@ -129,8 +130,10 @@ session_start();
                         </div>
 
                     </div> <!-- row -->
-                    <div class="row justify-content-center">
-                          <div class="col-xl-2 col-lg-2 col-sm-10 home-text-container">
+
+                    <div class="row" style="width:100%;" >
+                        <div class="col-xl-2 col-lg-2 col-sm-10 justify-content-center">
+                            <!-- Primo blocco di testo introduttivo-->
                             <div id= home-text-left>
                                 <h4>
 
@@ -142,14 +145,13 @@ session_start();
                             
                         </div>
 
-                        <div class="col-xl-1 col-lg-1"></div>
+                        <!--Video-->
 
-                        <div class="col-xl-7 col-lg-7 col-sm-10">
-                            <!-- <video autoplay="true" id="videoElement"></video> -->
-                            <div id="container">
-                                  <div id="vid_container">
+                        <div class="col-xl-8 col-lg-8 col-sm-10 justify-content-center">                           
+                              <div id="vid_container">
+                                <div id="video_overlay"></div>
                                     <video id="video" autoplay playsinline></video>
-                                    <div id="video_overlay"></div>
+                                    
                                   </div>
                                   <div id="gui_controls">
                                     <button
@@ -165,13 +167,13 @@ session_start();
                                       type="button"
                                       aria-pressed="false"
                                     ></button>
-                                  </div>
+                                  
+                                    </div>
                                 </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4">
-                            <button class="main-btn rounded-three carousel-btn rounded-buttons" input="submit" name="snap" id="snap" href="#">SCATTA</button>
-                        </div>
-                          <div class="col-xl-2 col-lg-2 col-sm-10 home-text-container">
+
+                        <!--secondo blocco di testo introduttivo-->
+
+                          <div class="col-xl-2 col-lg-2 col-sm-10 justify-content-center">
                             <div id= home-text-right>
                                 <h4>
 
@@ -181,18 +183,12 @@ session_start();
                                     
                                 </h4>
                             </div>
-                            
                         </div>
+                            
+                     
                     </div> <!-- row -->
-                    <div class="row justify-content-center">
-                        <ul class="carousel-btn rounded-buttons">
-                            <li><button class="main-btn rounded-three" input="submit" name="snap" id="snap" href="#">SCATTA</button></li>
-                        </ul>
-
-                    </div>
-                    <div class="row justify-content-center">
-                        <canvas id='canvasCamera' width='8000px' height='6000px'></canvas>
-                    </div>
+                    
+                  
                 </div> <!-- container -->
             </div> <!-- bd-example -->
         </div>

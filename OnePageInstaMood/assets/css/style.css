@@ -119,9 +119,7 @@ p {
   color: var(--color-text-1);
   margin: 0px; }
 
-.home-text-container {
-  text-align: center;
-}
+
 
 #home-text-left {
   text-align: left;
@@ -132,7 +130,8 @@ p {
   text-align: right;
   display: inline-block;
   height: 50%;
-  position: absolute;
+  float: left;
+
   bottom: 0;
 
  
