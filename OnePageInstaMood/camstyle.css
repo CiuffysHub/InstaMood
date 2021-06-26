@@ -1,7 +1,9 @@
 
 #vid_container {
-  
   float: left;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 #video {

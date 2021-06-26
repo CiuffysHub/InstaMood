@@ -122,6 +122,7 @@ session_start();
             <div class="bd-example">
                 <div class="container" style="margin-top: 4em; margin-bottom: 5%;">
 
+
                     <div class="row justify-content-center">
                         <div class="col-lg-6">
                             <div class="section-title text-center pb-20">
@@ -150,6 +151,10 @@ session_start();
                         <div class="col-xl-8 col-lg-8 col-sm-10 justify-content-center">                           
                               <div id="vid_container">
                                 <div id="video_overlay"></div>
+                            <!-- <video autoplay="true" id="videoElement"></video> -->
+                            <div id="container">
+                                  <div id="vid_container">
+
                                     <video id="video" autoplay playsinline></video>
                                     
                                   </div>
@@ -189,6 +194,11 @@ session_start();
                     </div> <!-- row -->
                     
                   
+
+                    </div> <!-- row -->
+                    <div class="row justify-content-center">
+                        <canvas id='canvasCamera' width='8000px' height='6000px'></canvas>
+                    </div>
                 </div> <!-- container -->
             </div> <!-- bd-example -->
         </div>
