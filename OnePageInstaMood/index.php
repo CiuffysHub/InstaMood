@@ -227,7 +227,7 @@ session_start();
     <div class="overlay-right"></div>
 
     <!--====== SAIDEBAR PART ENDS ======-->
- 
+
     <!--====== TESTIMONIAL THREE PART START ======-->
 
     <section id="testimonial" class="testimonial-area">
@@ -241,7 +241,7 @@ session_start();
                 </div>
             </div> <!-- row -->
             
-            <div class="row">
+            <div class="row" data-toggle="modal" data-target="#exampleModal">
                 <div class="col-lg-12">
                     <div class="row testimonial-active">
                         <div class="col-lg-4">
@@ -285,6 +285,24 @@ session_start();
             </div> <!-- row -->
         </div> <!-- container -->
     </section>
+    <!-- Modal markup: https://getbootstrap.com/docs/4.4/components/modal/ -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+                <img src="assets/images/carousel.PNG" alt="Author">
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
 
     <!--====== TESTIMONIAL THREE PART ENDS ======-->
     
@@ -427,6 +445,14 @@ session_start();
     <script src="js/screenfull.min.js"></script>
     <script src="js/howler.core.min.js"></script>
     <script src="js/main.js"></script>
+    <script type="text/javascript">
+        const myModal = document.getElementById('exampleModal1')
+        const myInput = document.getElementById('myInput')
+
+        myModal.addEventListener('shown.mdb.modal', () => {
+          myInput.focus()
+        })
+    </script>
 
 </body>
 
