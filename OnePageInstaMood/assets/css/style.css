@@ -24,11 +24,13 @@
 ===========================*/
 
 :root {
-	--color-1:#ffa7d1; /* pink */
-	--color-2:#ffb6c0; /* light pink */
-  --color-3:#c49064; /* kaki brown */
-  --color-4:#b6bcaf; /* light gray */
-  --color-5:#393237; /* obsidian */
+  --color-1:#43cae9;
+  --color-2:#38f9d7;
+	/*--color-1:#ffa7d1; 
+	--color-2:#ffb6c0; light pink 
+  --color-3:#c49064; kaki brown 
+  --color-4:#b6bcaf; light gray
+  --color-5:#393237; obsidian */
 	--bg-1:#f4f6f7;
 	--bg-2:#fff;
 	--ff: "Pacifico", sans-serif;

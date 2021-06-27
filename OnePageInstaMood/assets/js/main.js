@@ -13,11 +13,11 @@ $(function() {
     
     $(window).on('scroll', function(event) {    
         var scroll = $(window).scrollTop();
-        if (scroll < 10) {
+        /*if (scroll < 10) {
             $(".navbar-area").removeClass("sticky");
-        } else{
+        } else{*/
             $(".navbar-area").addClass("sticky");
-        }
+        //}
     });
     
      //===== close navbar-collapse when a  clicked

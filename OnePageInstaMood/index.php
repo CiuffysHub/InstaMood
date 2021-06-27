@@ -47,10 +47,10 @@ session_start();
     <link rel="stylesheet" href="assets/css/instamood.css">
     <link rel="stylesheet" type="text/css" href="camstyle.css" />
 
-    <!--====== Pacifico font ======-->
+    <!--====== Pacifico font 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"> ======-->
 
 </head>
 
@@ -125,33 +125,38 @@ session_start();
                     <div class="row justify-content-center">
                         <div class="col-lg-6">
                             <div class="section-title text-center pb-20">
-                                <h3 class="title">Scatta una Foto!</h3>
+                                <h3 class="title">Come ti senti oggi?&#128516;</h3>
                             </div> <!-- section title -->
                         </div>
-
                     </div> <!-- row -->
 
                     <div class="row" style="width:100%;" >
-                        <div class="col-xl-2 col-lg-2 col-sm-10 justify-content-center">
-                            <!-- Primo blocco di testo introduttivo-->
-                            <div id= home-text-left>
-                                <h4>
-
-                                    Rivela il <br>
-                                    tuo mood <br>
-                                    in camera e...
-                                </h4>
-                            </div>
-                            
+                    <div class="col-lg-4 d-sm-none d-md-block d-none d-sm-block">
+                    <div class="single-about d-sm-flex mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1.2s">
+                        <div class="about-icon">
+                            <img src="assets/images/icon-1.png" alt="Icon">
                         </div>
+                        <div class="about-content media-body">
+                            <h4 class="about-title">Riconosce il Mood</h4>
+                            <p class="text">Poorly designed presentations are a thing of the past. Create beautiful and high-quality content that is aligned.</p>
+                        </div>
+                    </div> <!-- single about -->
+                    <div class="single-about d-sm-flex mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1.2s">
+                        <div class="about-icon">
+                            <img src="assets/images/icon-1.png" alt="Icon">
+                        </div>
+                        <div class="about-content media-body">
+                            <h4 class="about-title">Condividi sul social</h4>
+                            <p class="text">Poorly designed presentations are a thing of the past. Create beautiful and high-quality content that is aligned.</p>
+                        </div>
+                    </div> <!-- single about -->
+                    </div>
 
                         <!--Video-->
-
-                        <div class="col-xl-8 col-lg-8 col-sm-10 justify-content-center">                           
+                        <div class="col-xl-8 col-lg-8 col-sm-10 pr-0 justify-content-center">                           
                               <div id="vid_container">
                                 <div id="video_overlay"></div>
                                     <video id="video" autoplay playsinline></video>
-                                    
                                   </div>
                                   <div id="gui_controls">
                                     <button
@@ -170,21 +175,6 @@ session_start();
                                   
                                     </div>
                                 </div>
-
-                        <!--secondo blocco di testo introduttivo-->
-
-                          <div class="col-xl-2 col-lg-2 col-sm-10 justify-content-center">
-                            <div id= home-text-right>
-                                <h4>
-
-                                    ..condividilo <br>
-                                    con i tuoi <br>
-                                    amici
-                                    
-                                </h4>
-                            </div>
-                        </div>
-                            
                      
                     </div> <!-- row -->
                     
@@ -241,18 +231,18 @@ session_start();
                 </div>
             </div> <!-- row -->
             
-            <div class="row" data-toggle="modal" data-target="#exampleModal">
+            <div class="row"">
                 <div class="col-lg-12">
                     <div class="row testimonial-active">
                         <div class="col-lg-4">
-                            <div class="single-testimonial mt-30 mb-30 text-center">
+                            <div class="single-testimonial mt-30 mb-30 text-center" data-toggle="modal" data-target="#exampleModal1">
                                 <div>
                                     <img src="assets/images/carousel.PNG" alt="Author">
                                 </div>
                             </div> <!-- single column -->
-                            <div class="single-testimonial mt-30 mb-30 text-center">
+                            <div class="single-testimonial mt-30 mb-30 text-center" data-toggle="modal" data-target="#exampleModal2">
                                 <div>
-                                    <img src="assets/images/carousel.PNG" alt="Author">
+                                    <img src="assets/images/carousel.PNG" style="filter: grayscale(100%);" alt="Author">
                                 </div>
                             </div> <!-- single column -->
                         </div>
@@ -286,7 +276,7 @@ session_start();
         </div> <!-- container -->
     </section>
     <!-- Modal markup: https://getbootstrap.com/docs/4.4/components/modal/ -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -303,9 +293,59 @@ session_start();
       </div>
     </div>
     </div>
+    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+                <img style="filter: grayscale(100%);" src="assets/images/carousel.PNG" alt="Author">
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
 
     <!--====== TESTIMONIAL THREE PART ENDS ======-->
     
+    <div class="container mt-4 mb-5">
+    <div class="d-flex justify-content-center row">
+        <div class="col-md-8">
+            <div class="feed p-2">
+                <div class="bg-white border mt-2">
+                    <div>
+                        <div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom">
+                            <div class="d-flex flex-row align-items-center feed-text px-2"><img class="rounded-circle" src="assets/images/carousel.PNG" width="45" height="45">
+                                <div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold">Thomson ben</span><span class="text-black-50 time">40 minutes ago</span></div>
+                            </div>
+                            <div class="feed-icon px-2"><i class="fa fa-ellipsis-v text-black-50"></i></div>
+                        </div>
+                    </div>
+                    <div class="p-2 px-3"><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></div>
+                    <div class="d-flex justify-content-end socials p-2 py-3"><i class="fa fa-thumbs-up"></i><i class="fa fa-comments-o"></i><i class="fa fa-share"></i></div>
+                </div>
+                <div class="bg-white border mt-2">
+                    <div>
+                        <div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom">
+                            <div class="d-flex flex-row align-items-center feed-text px-2"><img class="rounded-circle" src="assets/images/carousel.PNG" width="45" height="45">
+                                <div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold">Thomson ben</span><span class="text-black-50 time">40 minutes ago</span></div>
+                            </div>
+                            <div class="feed-icon px-2"><i class="fa fa-ellipsis-v text-black-50"></i></div>
+                        </div>
+                    </div>
+                    <div class="feed-image p-2 px-3 d-flex justify-content-center"><img class="img-fluid img-responsive" src="assets/images/carousel.PNG"></div>
+                    <div class="d-flex justify-content-end socials p-2 py-3"><i class="fa fa-thumbs-up"></i><i class="fa fa-comments-o"></i><i class="fa fa-share"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
     <!--====== FOOTER FOUR PART START ======-->
 
     <footer id="footer" class="footer-area">
@@ -445,14 +485,6 @@ session_start();
     <script src="js/screenfull.min.js"></script>
     <script src="js/howler.core.min.js"></script>
     <script src="js/main.js"></script>
-    <script type="text/javascript">
-        const myModal = document.getElementById('exampleModal1')
-        const myInput = document.getElementById('myInput')
-
-        myModal.addEventListener('shown.mdb.modal', () => {
-          myInput.focus()
-        })
-    </script>
 
 </body>
 
