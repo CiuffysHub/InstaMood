@@ -13,7 +13,7 @@ var takePhotoButton;
 var toggleFullScreenButton;
 var switchCameraButton;
 var amountOfCameras = 0;
-var currentFacingMode = 'environment';
+var currentFacingMode = 'user';
 
 // this function counts the amount of video inputs
 // it replaces DetectRTC that was previously implemented.
@@ -139,7 +139,7 @@ function initCameraUI() {
     switchCameraButton.addEventListener('click', function () {
       if (currentFacingMode === 'environment') currentFacingMode = 'user';
       else currentFacingMode = 'environment';
-
+      console.log(currentFacingMode);
       initCameraStream();
     });
   }
@@ -193,11 +193,11 @@ function initCameraStream() {
   var constraints = {
     audio: false,
     video: {
-      width: { ideal: size },
-      height: { ideal: size },
+      //width: { ideal: size },
+      //height: { ideal: size },
       //width: { min: 1024, ideal: window.innerWidth, max: 1920 },
       //height: { min: 776, ideal: window.innerHeight, max: 1080 },
-      facingMode: currentFacingMode,
+      facingMode: {exact: currentFacingMode},
     },
   };
 

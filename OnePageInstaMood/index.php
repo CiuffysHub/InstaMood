@@ -89,7 +89,7 @@ session_start();
                                 <img src="assets/images/logo_small.png" alt="Logo">
                             </a>
 
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarEight" aria-controls="navbarEight" aria-expanded="false" aria-label="Toggle navigation">
+                            <button class="navbar-toggler" style="position: relative;" type="button" data-toggle="collapse" data-target="#navbarEight" aria-controls="navbarEight" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="toggler-icon"></span>
                                 <span class="toggler-icon"></span>
                                 <span class="toggler-icon"></span>
@@ -130,7 +130,7 @@ session_start();
                         </div>
                     </div> <!-- row -->
 
-                    <div class="row" style="width:100%;" >
+                    <div class="row m-0" style="width:100%;" >
                     <div class="col-lg-4 d-sm-none d-md-block d-none d-sm-block">
                     <div class="single-about d-sm-flex mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1.2s">
                         <div class="about-icon">
@@ -153,7 +153,7 @@ session_start();
                     </div>
 
                         <!--Video-->
-                        <div class="col-xl-8 col-lg-8 col-sm-10 pr-0 justify-content-center">                           
+                        <div class="col-xl-8 col-lg-8 col-sm-10 p-0 justify-content-center">                           
                               <div id="vid_container">
                                 <div id="video_overlay"></div>
                                     <video id="video" autoplay playsinline></video>
@@ -476,8 +476,8 @@ session_start();
     <script src="assets/js/main.js"></script>
 
     <!--====== Instamood js ======-->
-    <script type="text/javascript" src="https://sdk.morphcast.com/mphtools/v1.0/mphtools.js"></script>
-    <script type="text/javascript" src="https://ai-sdk.morphcast.com/v1.14/ai-sdk.js"></script>
+    <!-- <script type="text/javascript" src="https://sdk.morphcast.com/mphtools/v1.0/mphtools.js"></script>
+    <script type="text/javascript" src="https://ai-sdk.morphcast.com/v1.14/ai-sdk.js"></script> -->
     <script src="assets/js/camera_stream.js"></script>
     <script src="assets/js/mood_filters_preview.js"></script>
     <script src="assets/js/snap_picture.js"></script>
