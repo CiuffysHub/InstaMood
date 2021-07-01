@@ -39,7 +39,7 @@ $(function() {
     
     //===== Section Menu Active
 
-    var scrollLink = $('.page-scroll');
+   /* var scrollLink = $('.page-scroll');
         // Active link switching
         $(window).scroll(function() {
         var scrollbarLocation = $(this).scrollTop();
@@ -53,7 +53,7 @@ $(function() {
             $(this).parent().siblings().removeClass('active');
           }
         });
-    });    
+    });    */
     
     
     //===== Sidebar

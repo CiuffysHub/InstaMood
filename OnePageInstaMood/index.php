@@ -231,42 +231,48 @@ session_start();
                 </div>
             </div> <!-- row -->
             
-            <div class="row"">
+            <div class="row">
                 <div class="col-lg-12">
-                    <div class="row testimonial-active">
-                        <div class="col-lg-4">
+                    <div class="row testimonial-active" id="gallery">
+                        <div class="col-lg-4 col-xs-6">
                             <div class="single-testimonial mt-30 mb-30 text-center" data-toggle="modal" data-target="#exampleModal1">
-                                <div>
-                                    <img src="assets/images/carousel.PNG" alt="Author">
+                                <div class="justify-content-center d-flex" style= "width: auto; height: 200px;">
+                                    <img style="width: auto; height: 200px; object-fit: cover" src="assets/images/carousel.PNG" alt="Author">
                                 </div>
                             </div> <!-- single column -->
+                        </div>
+                        <div class="col-lg-4 col-xs-6">
                             <div class="single-testimonial mt-30 mb-30 text-center" data-toggle="modal" data-target="#exampleModal2">
-                                <div>
-                                    <img src="assets/images/carousel.PNG" style="filter: grayscale(100%);" alt="Author">
+                                <div class="justify-content-center d-flex" style= "width: auto; height: 200px;">
+                                    <img style= "width: auto; height: 200px; object-fit: cover" src="assets/images/carousel.PNG" style="filter: grayscale(100%);" alt="Author">
                                 </div>
                             </div> <!-- single column -->
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-4 col-xs-6">
                             <div class="single-testimonial mt-30 mb-30 text-center">
-                                <div>
-                                    <img src="assets/images/carousel.PNG" alt="Author">
-                                </div>
-                            </div> <!-- single column -->
-                            <div class="single-testimonial mt-30 mb-30 text-center">
-                                <div>
-                                    <img src="assets/images/carousel.PNG" alt="Author">
+                                <div class="justify-content-center d-flex" style= "width: auto; height: 200px;">
+                                    <img style= "width: auto; height: 200px; object-fit: cover" src="assets/images/carousel.PNG" alt="Author">
                                 </div>
                             </div> <!-- single column -->
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-4  col-xs-6">
                             <div class="single-testimonial mt-30 mb-30 text-center">
-                                <div>
-                                    <img src="assets/images/carousel.PNG" alt="Author">
+                                <div class="justify-content-center d-flex" style= "width: auto; height: 200px;">
+                                    <img style= "width: auto; height: 200px; object-fit: cover" src="assets/images/carousel.PNG" alt="Author">
                                 </div>
                             </div> <!-- single column -->
+                        </div>
+                        <div class="col-lg-4 col-xs-6">
                             <div class="single-testimonial mt-30 mb-30 text-center">
-                                <div>
-                                    <img src="assets/images/carousel.PNG" alt="Author">
+                                <div class="justify-content-center d-flex" style= "width: auto; height: 200px;">
+                                    <img style= "width: auto; height: 200px; object-fit: cover" src="assets/images/carousel.PNG" alt="Author">
+                                </div>
+                            </div> <!-- single column -->
+                        </div>
+                        <div class="col-lg-4 col-xs-6">
+                            <div class="single-testimonial mt-30 mb-30 text-center">
+                                <div class="justify-content-center d-flex" style= "width: auto; height: 200px;">
+                                    <img style= "width: auto; height: 200px; object-fit: cover" src="assets/images/carousel.PNG" alt="Author">
                                 </div>
                             </div> <!-- single column -->
                         </div>
@@ -276,39 +282,41 @@ session_start();
         </div> <!-- container -->
     </section>
     <!-- Modal markup: https://getbootstrap.com/docs/4.4/components/modal/ -->
-    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-                <img src="assets/images/carousel.PNG" alt="Author">
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-                <img style="filter: grayscale(100%);" src="assets/images/carousel.PNG" alt="Author">
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <div id="modals">
+        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                    <img src="assets/images/carousel.PNG" alt="Author">
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+        </div>
+        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                    <img style="filter: grayscale(100%);" src="assets/images/carousel.PNG" alt="Author">
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
     </div>
 
     <!--====== TESTIMONIAL THREE PART ENDS ======-->
@@ -480,7 +488,8 @@ session_start();
     <script type="text/javascript" src="https://ai-sdk.morphcast.com/v1.14/ai-sdk.js"></script> -->
     <script src="assets/js/camera_stream.js"></script>
     <script src="assets/js/mood_filters_preview.js"></script>
-    <script src="assets/js/snap_picture.js"></script>
+
+    <script src="js/add_to_gallery.js"></script>
     <script src="js/adapter.min.js"></script>
     <script src="js/screenfull.min.js"></script>
     <script src="js/howler.core.min.js"></script>
