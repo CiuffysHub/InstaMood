@@ -16,6 +16,7 @@ $query->bind_result($count);
 $query->fetch();
 
 if ($count==1){
+	$_SESSION['userlogin'] = $username;
 	echo "SUCCESS";
 }
 else{

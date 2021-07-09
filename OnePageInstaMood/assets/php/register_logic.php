@@ -21,6 +21,7 @@ if ($count==0) {
 	$query->bind_param("ss", $username,$password);
 	$query->execute();
 	$query->close();
+	mkdir("../../users/".$username);
 
 }
 else{

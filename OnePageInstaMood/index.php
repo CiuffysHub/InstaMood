@@ -1,8 +1,14 @@
 <?php
 session_start();
-//if(!isset($_SESSION['userlogin']))
-//  header("location: /assets/php/login_page.php");
+if(!isset($_SESSION['userlogin']))
+  header("location: /assets/php/login_page.php");
 
+// carica immagini
+// users/$_SESSION['userlogin']/*
+// array = prendi le ultime 6
+//...
+//<img src<?php...array[0]>>>
+//oppure creare in tempo reale con la funzione in fondo
 ?>
 
 <!doctype html>
@@ -234,45 +240,22 @@ session_start();
             <div class="row">
                 <div class="col-lg-12">
                     <div class="row testimonial-active" id="gallery">
+                        <?php
+                            foreach (glob("users/".$_SESSION['userlogin']."/*") as $file) {
+                                echo '<div class="col-lg-4 col-xs-6">
+                                    <div class="single-testimonial mt-30 mb-30 text-center" data-toggle="modal" data-target="#exampleModal1">
+                                        <div class="justify-content-center d-flex" style= "width: auto; height: 200px;">
+                                            <img style="width: auto; height: 200px; object-fit: cover" src='.$file.' alt="Author">
+                                        </div>
+                                    </div> <!-- single column -->
+                                </div>';
+                            }
+
+                        ?>
                         <div class="col-lg-4 col-xs-6">
                             <div class="single-testimonial mt-30 mb-30 text-center" data-toggle="modal" data-target="#exampleModal1">
                                 <div class="justify-content-center d-flex" style= "width: auto; height: 200px;">
                                     <img style="width: auto; height: 200px; object-fit: cover" src="assets/images/carousel.PNG" alt="Author">
-                                </div>
-                            </div> <!-- single column -->
-                        </div>
-                        <div class="col-lg-4 col-xs-6">
-                            <div class="single-testimonial mt-30 mb-30 text-center" data-toggle="modal" data-target="#exampleModal2">
-                                <div class="justify-content-center d-flex" style= "width: auto; height: 200px;">
-                                    <img style= "width: auto; height: 200px; object-fit: cover" src="assets/images/carousel.PNG" style="filter: grayscale(100%);" alt="Author">
-                                </div>
-                            </div> <!-- single column -->
-                        </div>
-                        <div class="col-lg-4 col-xs-6">
-                            <div class="single-testimonial mt-30 mb-30 text-center">
-                                <div class="justify-content-center d-flex" style= "width: auto; height: 200px;">
-                                    <img style= "width: auto; height: 200px; object-fit: cover" src="assets/images/carousel.PNG" alt="Author">
-                                </div>
-                            </div> <!-- single column -->
-                        </div>
-                        <div class="col-lg-4  col-xs-6">
-                            <div class="single-testimonial mt-30 mb-30 text-center">
-                                <div class="justify-content-center d-flex" style= "width: auto; height: 200px;">
-                                    <img style= "width: auto; height: 200px; object-fit: cover" src="assets/images/carousel.PNG" alt="Author">
-                                </div>
-                            </div> <!-- single column -->
-                        </div>
-                        <div class="col-lg-4 col-xs-6">
-                            <div class="single-testimonial mt-30 mb-30 text-center">
-                                <div class="justify-content-center d-flex" style= "width: auto; height: 200px;">
-                                    <img style= "width: auto; height: 200px; object-fit: cover" src="assets/images/carousel.PNG" alt="Author">
-                                </div>
-                            </div> <!-- single column -->
-                        </div>
-                        <div class="col-lg-4 col-xs-6">
-                            <div class="single-testimonial mt-30 mb-30 text-center">
-                                <div class="justify-content-center d-flex" style= "width: auto; height: 200px;">
-                                    <img style= "width: auto; height: 200px; object-fit: cover" src="assets/images/carousel.PNG" alt="Author">
                                 </div>
                             </div> <!-- single column -->
                         </div>
@@ -350,6 +333,28 @@ session_start();
                     <div class="d-flex justify-content-end socials p-2 py-3"><i class="fa fa-thumbs-up"></i><i class="fa fa-comments-o"></i><i class="fa fa-share"></i></div>
                 </div>
             </div>
+        </div>
+        <div class="col-md-4">
+            <input type="text" id="myInput" onkeyup="search()" placeholder="Search for names..">
+
+                <ul id="myUL">
+                  <li><div>Adele
+                    <button type="button" class="btn" style="background-color: #ffb6c0; border-color: #ffa7d1;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+                  <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"></path>
+                  <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"></path>
+                </svg>
+                Follow
+              </button></div></li>
+                  <li><a href="#">Agnes</a></li>
+
+                  <li><a href="#">Billy</a></li>
+                  <li><a href="#">Bob</a></li>
+
+                  <li><a href="#">Calvin</a></li>
+                  <li><a href="#">Christina</a></li>
+                  <li><a href="#">Cindy</a></li>
+                </ul>
         </div>
     </div>
 </div>
@@ -489,11 +494,97 @@ session_start();
     <script src="assets/js/camera_stream.js"></script>
     <script src="assets/js/mood_filters_preview.js"></script>
 
-    <script src="js/add_to_gallery.js"></script>
     <script src="js/adapter.min.js"></script>
     <script src="js/screenfull.min.js"></script>
     <script src="js/howler.core.min.js"></script>
     <script src="js/main.js"></script>
+
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+
+    var button = document.getElementById("takePhotoButton");
+    var video = document.getElementById("video");
+    var gallery_row = document.getElementById("gallery");
+    var modals = document.getElementById("modals");
+    
+
+
+    button.onclick = function(event) {
+
+      var tmpLastSlide = (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+
+      $('html,body').animate({
+      scrollTop: $("#testimonial").offset().top-70},
+      'slow');
+
+      var canvas = document.createElement("canvas");
+      canvas.setAttribute("width",video.videoWidth+'');
+      canvas.setAttribute("height",video.videoHeight+'');
+
+      var context = canvas.getContext('2d');
+
+      context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+      var dataURL = canvas.toDataURL();
+
+      $.ajax({
+        type: "POST",
+        url: "/assets/php/upload_on_server.php",
+        data: { 
+           imgBase64: dataURL,
+           id : tmpLastSlide
+        }
+      }).done(function(o) {
+        console.log('saved'); 
+        
+       loadPicture(tmpLastSlide);
+    
+      });
+     
+   };
+
+   function loadPicture(img) {
+       var gallery_element = document.createElement("div");
+        gallery_element.innerHTML = '<div class="single-testimonial mt-30 mb-30 text-center" data-toggle="modal" data-target="#Modal'+img+'"><div class="justify-content-center d-flex" style= "width: auto; height: 100%;"><img style= "width: auto; height: 100%; object-fit: cover" src="users/<?php echo $_SESSION['userlogin'];?>/'+img+'" alt="Author" ></div></div> <!-- single column -->';  
+        gallery_element.classList.add('col-lg-4');
+        gallery_row.prepend(gallery_element);
+        $("#gallery").slick('refresh');
+
+        var modal_element = document.createElement("div");
+        modal_element.innerHTML = '<div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div><div class="modal-body"><img src="assets/images/new.jpg" alt="Author"><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div></div></div></div>';
+        modal_element.classList.add('modal');
+        modal_element.classList.add('fade');
+        modal_element.id = 'Modal'+img;
+        modal_element.setAttribute('tabindex','-1');
+        modal_element.setAttribute('role','dialog');
+        modal_element.setAttribute('aria-hidden','true');
+        modals.prepend(modal_element);
+   }
+
+});
+    </script>
+
+    <script>
+    function search() {
+      // Declare variables
+      var input, filter, ul, li, a, i, txtValue;
+      input = document.getElementById('myInput');
+      filter = input.value.toUpperCase();
+      ul = document.getElementById("myUL");
+      li = ul.getElementsByTagName('li');
+
+      // Loop through all list items, and hide those who don't match the search query
+      for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          li[i].style.display = "";
+        } else {
+          li[i].style.display = "none";
+        }
+      }
+    }
+    </script>
 
 </body>
 

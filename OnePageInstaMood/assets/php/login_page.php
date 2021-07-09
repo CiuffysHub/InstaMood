@@ -79,7 +79,7 @@
 						var password = $('#password').val();
 					}
 
-					e.preventDefault();
+					e.preventDefault();  
 
 					$.ajax({
 						type: 'POST',
