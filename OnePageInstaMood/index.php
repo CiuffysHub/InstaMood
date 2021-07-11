@@ -338,22 +338,12 @@ if(!isset($_SESSION['userlogin']))
             <input type="text" id="myInput" onkeyup="search()" placeholder="Search for names..">
 
                 <ul id="myUL">
-                  <li><div>Adele
-                    <button type="button" class="btn" style="background-color: #ffb6c0; border-color: #ffa7d1;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
-                  <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"></path>
-                  <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"></path>
-                </svg>
-                Follow
-              </button></div></li>
-                  <li><a href="#">Agnes</a></li>
-
-                  <li><a href="#">Billy</a></li>
-                  <li><a href="#">Bob</a></li>
-
-                  <li><a href="#">Calvin</a></li>
-                  <li><a href="#">Christina</a></li>
-                  <li><a href="#">Cindy</a></li>
+                  <li>
+                    <div style="display: flex;">
+                        <p style="width: 80%;" href="#">Adele</p>
+                        <button>Follow</button>
+                    </div>
+                  </li>
                 </ul>
         </div>
     </div>
@@ -565,6 +555,16 @@ if(!isset($_SESSION['userlogin']))
     </script>
 
     <script>
+
+    var names=[];
+
+    $.ajax({
+        type: "POST",
+        url: "/assets/php/find.php",
+      }).done(function(o) {
+        names=JSON.parse(o);
+      });
+
     function search() {
       // Declare variables
       var input, filter, ul, li, a, i, txtValue;
@@ -573,16 +573,37 @@ if(!isset($_SESSION['userlogin']))
       ul = document.getElementById("myUL");
       li = ul.getElementsByTagName('li');
 
+      $.ajax({
+        type: "POST",
+        url: "/assets/php/find.php",
+      }).done(function(o) {
+        names=JSON.parse(o);
+        $(ul).empty();
       // Loop through all list items, and hide those who don't match the search query
-      for (i = 0; i < li.length; i++) {
-        a = li[i].getElementsByTagName("a")[0];
-        txtValue = a.textContent || a.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          li[i].style.display = "";
-        } else {
-          li[i].style.display = "none";
+      for (i = 0; i < names.length; i++) {
+        if (names[i].toUpperCase().indexOf(filter) > -1) {
+          $('<li><div style="display: flex;"><p style="width: 80%;" href="#">'+names[i]+'</p><button onclick="follow(\''+names[i]+'\')">Follow</button></div></li>').appendTo(ul);
+
         }
       }
+      });
+
+      
+    }
+
+
+    function follow(name){
+        $.ajax({
+        type: "POST",
+        url: "/assets/php/follow.php",
+        data: { 
+           following : name
+        }
+      }).done(function(o) {
+        console.log('followed'); 
+        search();
+    
+      });
     }
     </script>
 

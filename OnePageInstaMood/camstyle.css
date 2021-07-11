@@ -35,7 +35,7 @@
 /*  Button style from: 
     https://googlesamples.github.io/web-fundamentals/fundamentals/media/mobile-web-video-playback.html */
 
-button {
+#gui_controls button {
   outline: none;
   position: absolute;
   color: #ffb6c0;;
