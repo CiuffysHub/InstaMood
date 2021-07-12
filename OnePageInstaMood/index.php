@@ -494,6 +494,7 @@ if(!isset($_SESSION['userlogin']))
 
       var context = canvas.getContext('2d');
 
+      context.filter = "grayscale(1)";
       context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
       var dataURL = canvas.toDataURL();
