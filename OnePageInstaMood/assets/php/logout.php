@@ -2,6 +2,6 @@
 
 session_start();
 session_destroy();
-header('Location: /php/login_page.php');
+header('Location: /assets/php/login_page.php');
 
 ?>

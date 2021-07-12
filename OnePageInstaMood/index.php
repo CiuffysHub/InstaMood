@@ -2,13 +2,6 @@
 session_start();
 if(!isset($_SESSION['userlogin']))
   header("location: /assets/php/login_page.php");
-
-// carica immagini
-// users/$_SESSION['userlogin']/*
-// array = prendi le ultime 6
-//...
-//<img src<?php...array[0]>>>
-//oppure creare in tempo reale con la funzione in fondo
 ?>
 
 <!doctype html>
@@ -110,7 +103,7 @@ if(!isset($_SESSION['userlogin']))
                                         <a class="page-scroll" href="#testimonial">GALLERIA</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="page-scroll" href="#">CONDIVIDI</a>
+                                        <a class="page-scroll" href="#share">CONDIVIDI</a>
                                     </li>
                                 </ul>
                             </div>
@@ -209,6 +202,9 @@ if(!isset($_SESSION['userlogin']))
                     <li><a href="#">SERVICES</a></li>
                     <li><a href="#">RESOURCES</a></li>
                     <li><a href="#">CONTACT</a></li>
+                    <li><a href="assets/php/logout.php">LOGOUT</a></li>
+
+
                 </ul>
             </div> <!-- menu -->
             <div class="sidebar-social d-flex align-items-center justify-content-center">
@@ -243,7 +239,7 @@ if(!isset($_SESSION['userlogin']))
                         <?php
                             foreach (glob("users/".$_SESSION['userlogin']."/*") as $file) {
                                 echo '<div class="col-lg-4 col-xs-6">
-                                    <div class="single-testimonial mt-30 mb-30 text-center" data-toggle="modal" data-target="#exampleModal1">
+                                    <div class="single-testimonial mt-30 mb-30 text-center" data-toggle="modal" data-target="#Modal'.(basename($file)).'">
                                         <div class="justify-content-center d-flex" style= "width: auto; height: 200px;">
                                             <img style="width: auto; height: 200px; object-fit: cover" src='.$file.' alt="Author">
                                         </div>
@@ -283,71 +279,56 @@ if(!isset($_SESSION['userlogin']))
           </div>
         </div>
         </div>
-        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                    <img style="filter: grayscale(100%);" src="assets/images/carousel.PNG" alt="Author">
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        </div>
+        <?php 
+        foreach (glob("users/".$_SESSION['userlogin']."/*") as $file) {
+            echo '<div class="modal fade" id="Modal'.(basename($file)).'" tabindex="-1" role="dialog" aria-hidden="true">
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">×</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body">
+                                            <img style="filter: grayscale(100%);" src="'.$file.'" alt="Author">
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" onclick="share(\''.(basename($file)).'\')" data-dismiss="modal">Share</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                </div>';
+        }
+        ?>
     </div>
 
     <!--====== TESTIMONIAL THREE PART ENDS ======-->
     
-    <div class="container mt-4 mb-5">
-    <div class="d-flex justify-content-center row">
-        <div class="col-md-8">
-            <div class="feed p-2">
-                <div class="bg-white border mt-2">
-                    <div>
-                        <div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom">
-                            <div class="d-flex flex-row align-items-center feed-text px-2"><img class="rounded-circle" src="assets/images/carousel.PNG" width="45" height="45">
-                                <div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold">Thomson ben</span><span class="text-black-50 time">40 minutes ago</span></div>
-                            </div>
-                            <div class="feed-icon px-2"><i class="fa fa-ellipsis-v text-black-50"></i></div>
-                        </div>
-                    </div>
-                    <div class="p-2 px-3"><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></div>
-                    <div class="d-flex justify-content-end socials p-2 py-3"><i class="fa fa-thumbs-up"></i><i class="fa fa-comments-o"></i><i class="fa fa-share"></i></div>
+    <section id='share' class="pt-50 pb-30">
+        <div class="container mt-4 mb-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="section-title text-center pb-20">
+                        <h3 class="title">Condividi!</h3>
+                        <p class="text">Visualizza i tuoi scatti preferiti e condividi i migliori con i tuoi amici!</p>
+                    </div> <!-- section title -->
                 </div>
-                <div class="bg-white border mt-2">
-                    <div>
-                        <div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom">
-                            <div class="d-flex flex-row align-items-center feed-text px-2"><img class="rounded-circle" src="assets/images/carousel.PNG" width="45" height="45">
-                                <div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold">Thomson ben</span><span class="text-black-50 time">40 minutes ago</span></div>
-                            </div>
-                            <div class="feed-icon px-2"><i class="fa fa-ellipsis-v text-black-50"></i></div>
-                        </div>
+            </div> <!-- row -->
+            <div class="d-flex justify-content-center row">
+                <div class="col-md-8">
+                    <div id="feed" class="feed p-2">
                     </div>
-                    <div class="feed-image p-2 px-3 d-flex justify-content-center"><img class="img-fluid img-responsive" src="assets/images/carousel.PNG"></div>
-                    <div class="d-flex justify-content-end socials p-2 py-3"><i class="fa fa-thumbs-up"></i><i class="fa fa-comments-o"></i><i class="fa fa-share"></i></div>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" id="myInput" onkeyup="search()" placeholder="Search for names..">
+
+                        <ul id="myUL">
+                        </ul>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <input type="text" id="myInput" onkeyup="search()" placeholder="Search for names..">
-
-                <ul id="myUL">
-                  <li>
-                    <div style="display: flex;">
-                        <p style="width: 80%;" href="#">Adele</p>
-                        <button>Follow</button>
-                    </div>
-                  </li>
-                </ul>
-        </div>
-    </div>
-</div>
+    </section>
 
     <!--====== FOOTER FOUR PART START ======-->
 
@@ -535,13 +516,13 @@ if(!isset($_SESSION['userlogin']))
 
    function loadPicture(img) {
        var gallery_element = document.createElement("div");
-        gallery_element.innerHTML = '<div class="single-testimonial mt-30 mb-30 text-center" data-toggle="modal" data-target="#Modal'+img+'"><div class="justify-content-center d-flex" style= "width: auto; height: 100%;"><img style= "width: auto; height: 100%; object-fit: cover" src="users/<?php echo $_SESSION['userlogin'];?>/'+img+'" alt="Author" ></div></div> <!-- single column -->';  
+        gallery_element.innerHTML = '<div class="single-testimonial mt-30 mb-30 text-center" data-toggle="modal" data-target="#Modal'+img+'"><div class="justify-content-center d-flex" style= "width: auto; height: 100%;"><img style= "width: auto; height: 100%; object-fit: cover" src="users/<?php echo $_SESSION['userlogin'];?>/'+img+'" alt="Author" ></div></div> <!-- single column -->';
         gallery_element.classList.add('col-lg-4');
         gallery_row.prepend(gallery_element);
         $("#gallery").slick('refresh');
 
         var modal_element = document.createElement("div");
-        modal_element.innerHTML = '<div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div><div class="modal-body"><img src="assets/images/new.jpg" alt="Author"><div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div></div></div></div>';
+        modal_element.innerHTML = '<div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div><div class="modal-body"><img src="assets/images/new.jpg" alt="Author"><div class="modal-footer"><button type="button" onclick="share('+img+')" class="btn btn-secondary" data-dismiss="modal">Share</button><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div></div></div></div>';
         modal_element.classList.add('modal');
         modal_element.classList.add('fade');
         modal_element.id = 'Modal'+img;
@@ -556,13 +537,29 @@ if(!isset($_SESSION['userlogin']))
 
     <script>
 
+    
     var names=[];
+    var pictures = [];
 
     $.ajax({
         type: "POST",
         url: "/assets/php/find.php",
       }).done(function(o) {
         names=JSON.parse(o);
+      });
+
+      $.ajax({
+        type: "POST",
+        url: "/assets/php/feed.php",
+      }).done(function(o) {
+        console.log("in feed");
+        pictures = JSON.parse(o);
+        feed = document.getElementById("feed");
+          console.log(feed);
+          for (i = 0; i < pictures.length; i++) {
+            console.log(pictures[i]);
+              $('<div class="bg-white border mt-2"><div><div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom"><div class="d-flex flex-row align-items-center feed-text px-2"><img class="rounded-circle" src="assets/images/carousel.PNG" width="45" height="45"><div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold">Thomson ben</span><span class="text-black-50 time">40 minutes ago</span></div></div><div class="feed-icon px-2"><i class="fa fa-ellipsis-v text-black-50"></i></div></div></div><div class="feed-image p-2 px-3 d-flex justify-content-center"><img class="img-fluid img-responsive" src="users/'+pictures[i]+'"></div><div class="d-flex justify-content-end socials p-2 py-3"><i class="fa fa-thumbs-up"></i><i class="fa fa-comments-o"></i><i class="fa fa-share"></i></div></div>').appendTo(feed);
+          }
       });
 
     function search() {
@@ -605,6 +602,20 @@ if(!isset($_SESSION['userlogin']))
     
       });
     }
+
+    function share(picture){
+        $.ajax({
+        type: "POST",
+        url: "/assets/php/share.php",
+        data: { 
+           pictureID : picture
+        }
+      }).done(function(o) {
+        console.log('shared'); 
+    
+      });
+    }
+
     </script>
 
 </body>
