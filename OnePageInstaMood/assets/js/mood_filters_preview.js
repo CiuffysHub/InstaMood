@@ -26,7 +26,6 @@ var classes = {
 
 
 CY.loader()
-    .licenseKey("f83f9d80001b097b852fb32d5fce39b5a80239b57050")
     .addModule(CY.modules().FACE_DETECTOR.name)
     .addModule(CY.modules().FACE_EMOTION.name)
     .load()
@@ -36,7 +35,7 @@ CY.loader()
     var dynamic = document.getElementById("dynamic");
     mood = evt.detail.output.dominantEmotion;
     console.log(mood);
-    var preview = document.getElementById("videoElement");
+    var preview = document.getElementById("video");
 
     for (var c in classes){
     	preview.classList.remove(classes[c]);

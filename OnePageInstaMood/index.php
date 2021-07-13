@@ -460,10 +460,10 @@ if(!isset($_SESSION['userlogin']))
     <script src="assets/js/main.js"></script>
 
     <!--====== Instamood js ======-->
-    <!-- <script type="text/javascript" src="https://sdk.morphcast.com/mphtools/v1.0/mphtools.js"></script>
-    <script type="text/javascript" src="https://ai-sdk.morphcast.com/v1.14/ai-sdk.js"></script> -->
+    <script type="text/javascript" src="https://sdk.morphcast.com/mphtools/v1.0/mphtools.js"></script>
+    <script type="text/javascript" src="https://ai-sdk.morphcast.com/v1.14/ai-sdk.js"></script>
     <script src="assets/js/camera_stream.js"></script>
-    <script src="assets/js/mood_filters_preview.js"></script>
+    <!-- <script src="assets/js/mood_filters_preview.js"></script> -->
 
     <script src="js/adapter.min.js"></script>
     <script src="js/screenfull.min.js"></script>
@@ -471,6 +471,8 @@ if(!isset($_SESSION['userlogin']))
     <script src="js/main.js"></script>
 
     <script type="text/javascript">
+
+
         document.addEventListener('DOMContentLoaded', function() {
 
     var button = document.getElementById("takePhotoButton");
@@ -478,7 +480,52 @@ if(!isset($_SESSION['userlogin']))
     var gallery_row = document.getElementById("gallery");
     var modals = document.getElementById("modals");
     
+    var mood;
 
+    var classes = {
+            Neutral: 'undefined',
+            Happy: 'saturated',
+            Sad: 'grayscale',
+            Disgust: 'hue-rotate-green',
+            Angry: 'red-filter',
+            Fear: 'invert'
+        };
+
+        var moods = {
+            Neutral: 'undefined',
+            Happy: 'Happy',
+            Sad: 'Sad',
+            Disgust: 'Disgust',
+            Angry: 'Angry',
+            Fear: 'Fear'
+        }
+
+        var sentences = {
+            Neutral: 'undefined',
+            Happy: 'Im Happy',
+            Sad: 'Im so saaad',
+            Disgust: 'Bleah',
+            Angry: 'Im angryyyy',
+            Fear: 'Help me!'
+        }
+
+
+    CY.loader()
+        .addModule(CY.modules().FACE_DETECTOR.name)
+        .addModule(CY.modules().FACE_EMOTION.name)
+        .load()
+        .then(({ start, stop }) => start());
+        var mood = 'Neutral';
+        window.addEventListener(CY.modules().FACE_EMOTION.eventName, (evt) => {
+        mood = evt.detail.output.dominantEmotion;
+        console.log(mood);
+
+        for (var c in classes){
+            video.classList.remove(classes[c]);
+        }
+        video.classList.add(classes[mood])
+        sentence = sentences[mood];
+        });
 
     button.onclick = function(event) {
 
