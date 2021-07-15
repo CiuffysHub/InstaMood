@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION['userlogin']))
-  header("location: /assets/php/login_page.php");
+  header("location: /php/login_page.php");
 ?>
 
 <!doctype html>
@@ -241,7 +241,7 @@ if(!isset($_SESSION['userlogin']))
                                 echo '<div class="col-lg-4 col-xs-6">
                                     <div class="single-testimonial mt-30 mb-30 text-center" data-toggle="modal" data-target="#Modal'.(basename($file)).'">
                                         <div class="justify-content-center d-flex" style= "width: auto; height: 200px;">
-                                            <img style="width: auto; height: 200px; object-fit: cover" src='.$file.' alt="Author">
+                                            <img class="gallery-img" style="width: auto; height: 200px; object-fit: cover" src='.$file.' alt="Author">
                                         </div>
                                     </div> <!-- single column -->
                                 </div>';
@@ -548,7 +548,7 @@ if(!isset($_SESSION['userlogin']))
 
       $.ajax({
         type: "POST",
-        url: "/assets/php/upload_on_server.php",
+        url: "/php/upload_on_server.php",
         data: { 
            imgBase64: dataURL,
            id : tmpLastSlide
@@ -585,21 +585,29 @@ if(!isset($_SESSION['userlogin']))
 
     <script>
 
-     feed = document.getElementById("feed");
+    var galleryImages = document.getElementsByClassName("gallery-img");
+    for (var img of galleryImages){
+        let aaa = document.createElement("div");
+        aaa.innerHTML="Pubblicata? Quando? Likes?";
+
+        img.parentNode.parentNode.append(aaa);
+    }
+
+    feed = document.getElementById("feed");
 
     var names=[];
     var pictures = [];
 
     $.ajax({
         type: "POST",
-        url: "/assets/php/find.php",
+        url: "/php/find.php",
       }).done(function(o) {
         names=JSON.parse(o);
       });
 
       $.ajax({
         type: "POST",
-        url: "/assets/php/feed.php",
+        url: "/php/feed.php",
       }).done(function(o) {
         console.log("in feed");
         pictures = JSON.parse(o);
@@ -618,7 +626,7 @@ if(!isset($_SESSION['userlogin']))
 
       $.ajax({
         type: "POST",
-        url: "/assets/php/find.php",
+        url: "/php/find.php",
       }).done(function(o) {
         names=JSON.parse(o);
         $(ul).empty();
@@ -638,7 +646,7 @@ if(!isset($_SESSION['userlogin']))
     function follow(name){
         $.ajax({
         type: "POST",
-        url: "/assets/php/follow.php",
+        url: "/php/follow.php",
         data: { 
            following : name
         }
@@ -652,7 +660,7 @@ if(!isset($_SESSION['userlogin']))
     function like(picture){
         $.ajax({
         type: "POST",
-        url: "/assets/php/like.php",
+        url: "/php/like.php",
         data: { 
            pictureID : picture
         }
@@ -661,10 +669,22 @@ if(!isset($_SESSION['userlogin']))
       });
     }
 
+    function loadGall(picture){
+        $.ajax({
+        type: "POST",
+        url: "/php/isshared.php",
+        data: { 
+           pictureID : picture
+        }
+      }).done(function(o) {
+        
+      });
+    }
+
     function loadPic(picture){
         $.ajax({
         type: "POST",
-        url: "/assets/php/getlikes.php",
+        url: "/php/getlikes.php",
         data: { 
            pictureID : picture
         }
@@ -676,7 +696,7 @@ if(!isset($_SESSION['userlogin']))
     function share(picture){
         $.ajax({
         type: "POST",
-        url: "/assets/php/share.php",
+        url: "/php/share.php",
         data: { 
            pictureID : picture
         }

@@ -10,7 +10,7 @@ if(isset($_SESSION['userlogin'])){
 	$img = str_replace(' ', '+', $img);
 	$fileData = base64_decode($img);
 	//saving
-	echo(file_put_contents("../../users/".$_SESSION['userlogin']."/".$fileName, $fileData));
+	echo(file_put_contents("../users/".$_SESSION['userlogin']."/".$fileName, $fileData));
 }
 
 ?>
