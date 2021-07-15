@@ -585,7 +585,8 @@ if(!isset($_SESSION['userlogin']))
 
     <script>
 
-    
+     feed = document.getElementById("feed");
+
     var names=[];
     var pictures = [];
 
@@ -602,11 +603,8 @@ if(!isset($_SESSION['userlogin']))
       }).done(function(o) {
         console.log("in feed");
         pictures = JSON.parse(o);
-        feed = document.getElementById("feed");
-          console.log(feed);
           for (i = 0; i < pictures.length; i++) {
-            console.log(pictures[i]);
-              $('<div class="bg-white border mt-2"><div><div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom"><div class="d-flex flex-row align-items-center feed-text px-2"><img class="rounded-circle" src="assets/images/carousel.PNG" width="45" height="45"><div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold">Thomson ben</span><span class="text-black-50 time">40 minutes ago</span></div></div><div class="feed-icon px-2"><i class="fa fa-ellipsis-v text-black-50"></i></div></div></div><div class="feed-image p-2 px-3 d-flex justify-content-center"><img class="img-fluid img-responsive" src="users/'+pictures[i]+'"></div><div class="d-flex justify-content-end socials p-2 py-3"><i class="fa fa-thumbs-up"></i><i class="fa fa-comments-o"></i><i class="fa fa-share"></i></div></div>').appendTo(feed);
+            loadPic(pictures[i]);
           }
       });
 
@@ -648,6 +646,30 @@ if(!isset($_SESSION['userlogin']))
         console.log('followed'); 
         search();
     
+      });
+    }
+
+    function like(picture){
+        $.ajax({
+        type: "POST",
+        url: "/assets/php/like.php",
+        data: { 
+           pictureID : picture
+        }
+      }).done(function(o) {
+        console.log('done'); 
+      });
+    }
+
+    function loadPic(picture){
+        $.ajax({
+        type: "POST",
+        url: "/assets/php/getlikes.php",
+        data: { 
+           pictureID : picture
+        }
+      }).done(function(likes) {
+         $('<div class="bg-white border mt-2"><div><div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom"><div class="d-flex flex-row align-items-center feed-text px-2"><img class="rounded-circle" src="assets/images/carousel.PNG" width="45" height="45"><div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold">Thomson ben: '+likes+' likes!</span><span class="text-black-50 time">40 minutes ago</span></div></div><div class="feed-icon px-2"><i class="fa fa-ellipsis-v text-black-50"></i></div></div></div><div class="feed-image p-2 px-3 d-flex justify-content-center"><img class="img-fluid img-responsive" src="users/'+picture+'" onclick="like(\''+picture+'\')"></div><div class="d-flex justify-content-end socials p-2 py-3"><i class="fa fa-thumbs-up"></i><i class="fa fa-comments-o"></i><i class="fa fa-share"></i></div></div>').appendTo(feed);
       });
     }
 
