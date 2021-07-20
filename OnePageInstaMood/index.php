@@ -236,17 +236,16 @@ if(!isset($_SESSION['userlogin']))
             <div class="row">
                 <div class="col-lg-12">
                     <div class="row testimonial-active" id="gallery">
-                        <?php
-                            foreach (glob("users/".$_SESSION['userlogin']."/*") as $file) {
-                                echo '<div class="col-lg-4 col-xs-6">
-                                    <div class="single-testimonial mt-30 mb-30 text-center" data-toggle="modal" data-target="#Modal'.(basename($file)).'">
-                                        <div class="justify-content-center d-flex" style= "width: auto; height: 200px;">
-                                            <img class="gallery-img" style="width: auto; height: 200px; object-fit: cover" src='.$file.' alt="Author">
-                                        </div>
-                                    </div> <!-- single column -->
-                                </div>';
-                            }
-
+                        <?php 
+                        foreach (glob("users/".$_SESSION['userlogin']."/*") as $file) {
+                            echo '<div class="col-lg-4 col-xs-6">
+                                <div class="single-testimonial mt-30 mb-30 text-center" data-toggle="modal" data-target="#Modal'.(basename($file)).'">
+                                    <div class="justify-content-center d-flex" style= "width: auto; height: 200px;">
+                                        <img id="'.(basename($file)).'" class="gallery-img" style="width: auto; height: 200px; object-fit: cover" src='.$file.' alt="Author">
+                                    </div>
+                                </div> <!-- single column -->
+                            </div>';
+                        }
                         ?>
                         <div class="col-lg-4 col-xs-6">
                             <div class="single-testimonial mt-30 mb-30 text-center" data-toggle="modal" data-target="#exampleModal1">
@@ -527,9 +526,13 @@ if(!isset($_SESSION['userlogin']))
         sentence = sentences[mood];
         });
 
+        function idgen(){
+            return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+        }
+
     button.onclick = function(event) {
 
-      var tmpLastSlide = (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+      var tmpLastSlide = idgen();
 
       $('html,body').animate({
       scrollTop: $("#testimonial").offset().top-70},
@@ -564,7 +567,7 @@ if(!isset($_SESSION['userlogin']))
 
    function loadPicture(img) {
        var gallery_element = document.createElement("div");
-        gallery_element.innerHTML = '<div class="single-testimonial mt-30 mb-30 text-center" data-toggle="modal" data-target="#Modal'+img+'"><div class="justify-content-center d-flex" style= "width: auto; height: 100%;"><img style= "width: auto; height: 100%; object-fit: cover" src="users/<?php echo $_SESSION['userlogin'];?>/'+img+'" alt="Author" ></div></div> <!-- single column -->';
+        gallery_element.innerHTML = '<div class="single-testimonial mt-30 mb-30 text-center" data-toggle="modal" data-target="#Modal'+img+'"><div class="justify-content-center d-flex" style= "width: auto; height: 100%;"><img id="'+img+'" style= "width: auto; height: 100%; object-fit: cover" src="users/<?php echo $_SESSION['userlogin'];?>/'+img+'" alt="Author" ></div></div> <!-- single column -->';
         gallery_element.classList.add('col-lg-4');
         gallery_row.prepend(gallery_element);
         $("#gallery").slick('refresh');
@@ -585,13 +588,17 @@ if(!isset($_SESSION['userlogin']))
 
     <script>
 
-    var galleryImages = document.getElementsByClassName("gallery-img");
-    for (var img of galleryImages){
-        let aaa = document.createElement("div");
-        aaa.innerHTML="Pubblicata? Quando? Likes?";
-
-        img.parentNode.parentNode.append(aaa);
-    }
+    $.ajax({
+            type: "POST",
+            url: "/php/getgalleryinfo.php"
+          }).done(function(result) {
+            for (var picture of JSON.parse(result)){
+                let aaa = document.createElement("div");
+                aaa.innerHTML="Pubblicata! Quando? "+picture.likes+' likes!';
+                var gallimg = document.getElementById(picture.pictureID);
+                gallimg.parentNode.parentNode.append(aaa);
+            }
+          });
 
     feed = document.getElementById("feed");
 
@@ -609,10 +616,9 @@ if(!isset($_SESSION['userlogin']))
         type: "POST",
         url: "/php/feed.php",
       }).done(function(o) {
-        console.log("in feed");
         pictures = JSON.parse(o);
           for (i = 0; i < pictures.length; i++) {
-            loadPic(pictures[i]);
+            $('<div class="bg-white border mt-2"><div><div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom"><div class="d-flex flex-row align-items-center feed-text px-2"><img class="rounded-circle" src="assets/images/carousel.PNG" width="45" height="45"><div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold">'+pictures[i].user+': '+pictures[i].likes+' likes!</span><span class="text-black-50 time">Many seconds ago</span></div></div><div class="feed-icon px-2"><i class="fa fa-ellipsis-v text-black-50"></i></div></div></div><div class="feed-image p-2 px-3 d-flex justify-content-center"><img class="img-fluid img-responsive" src="users/'+pictures[i].user+'/'+pictures[i].pictureID+'" onclick="like(\''+pictures[i].pictureID+'\')"></div><div class="d-flex justify-content-end socials p-2 py-3"><i class="fa fa-thumbs-up"></i><i class="fa fa-comments-o"></i><i class="fa fa-share"></i></div></div>').appendTo(feed);
           }
       });
 
@@ -666,30 +672,6 @@ if(!isset($_SESSION['userlogin']))
         }
       }).done(function(o) {
         console.log('done'); 
-      });
-    }
-
-    function loadGall(picture){
-        $.ajax({
-        type: "POST",
-        url: "/php/isshared.php",
-        data: { 
-           pictureID : picture
-        }
-      }).done(function(o) {
-        
-      });
-    }
-
-    function loadPic(picture){
-        $.ajax({
-        type: "POST",
-        url: "/php/getlikes.php",
-        data: { 
-           pictureID : picture
-        }
-      }).done(function(likes) {
-         $('<div class="bg-white border mt-2"><div><div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom"><div class="d-flex flex-row align-items-center feed-text px-2"><img class="rounded-circle" src="assets/images/carousel.PNG" width="45" height="45"><div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold">Thomson ben: '+likes+' likes!</span><span class="text-black-50 time">40 minutes ago</span></div></div><div class="feed-icon px-2"><i class="fa fa-ellipsis-v text-black-50"></i></div></div></div><div class="feed-image p-2 px-3 d-flex justify-content-center"><img class="img-fluid img-responsive" src="users/'+picture+'" onclick="like(\''+picture+'\')"></div><div class="d-flex justify-content-end socials p-2 py-3"><i class="fa fa-thumbs-up"></i><i class="fa fa-comments-o"></i><i class="fa fa-share"></i></div></div>').appendTo(feed);
       });
     }
 
