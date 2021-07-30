@@ -5,7 +5,7 @@ require_once('config.php');
 
 $username = $_SESSION['userlogin'];
 
-$sql = "SELECT sharings.pictureID, sharings.timestamps, COUNT(likes.user) FROM sharings LEFT JOIN likes ON likes.pictureID = sharings.pictureID where sharings.user=? GROUP BY sharings.pictureID,sharings.timestamps,likes.user";
+$sql = "SELECT sharings.pictureID, sharings.timestamps, COUNT(likes.user) FROM sharings LEFT JOIN likes ON likes.pictureID = sharings.pictureID where sharings.user=? GROUP BY sharings.pictureID,sharings.timestamps";
 $query = $db->prepare($sql);
 $query->bind_param("s", $username);
 $query->execute();

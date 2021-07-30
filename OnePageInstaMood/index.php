@@ -105,6 +105,9 @@ if(!isset($_SESSION['userlogin']))
                                     <li class="nav-item">
                                         <a class="page-scroll" href="#share">CONDIVIDI</a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="assets/php/logout.php">LOGOUT</a>
+                                    </li>
                                 </ul>
                             </div>
 
@@ -241,8 +244,10 @@ if(!isset($_SESSION['userlogin']))
                             echo '<div class="col-lg-4 col-xs-6">
                                 <div class="single-testimonial mt-30 mb-30 text-center" data-toggle="modal" data-target="#Modal'.(basename($file)).'">
                                     <div class="justify-content-center d-flex" style= "width: auto; height: 200px;">
-                                        <img id="'.(basename($file)).'" class="gallery-img" style="width: auto; height: 200px; object-fit: cover" src='.$file.' alt="Author">
+                                        <img id="'.(basename($file)).'" class="gallery-img" style="width: auto; height: 100%; object-fit: cover" src='.$file.' alt="Author">
                                     </div>
+                                    <div id="'.(basename($file)).'_footer" style=font-weight:bold;margin-top:2em;""> Non pubblicata
+                                        </div>
                                 </div> <!-- single column -->
                             </div>';
                         }
@@ -290,7 +295,7 @@ if(!isset($_SESSION['userlogin']))
                                       </div>
                                       <div class="modal-body">
                                             <img style="filter: grayscale(100%);" src="'.$file.'" alt="Author">
-                                      <div class="modal-footer">
+                                      <div class="modal-footer" style=" display: flex; justify-content: center;" id="'.(basename($file)).'_modalfooter">
                                         <button type="button" class="btn btn-secondary" onclick="share(\''.(basename($file)).'\')" data-dismiss="modal">Share</button>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                       </div>
@@ -502,7 +507,7 @@ if(!isset($_SESSION['userlogin']))
         var sentences = {
             Neutral: 'undefined',
             Happy: 'Im Happy',
-            Sad: 'Im so saaad',
+            Sad: 'Im so sgalleryimaged',
             Disgust: 'Bleah',
             Angry: 'Im angryyyy',
             Fear: 'Help me!'
@@ -567,13 +572,13 @@ if(!isset($_SESSION['userlogin']))
 
    function loadPicture(img) {
        var gallery_element = document.createElement("div");
-        gallery_element.innerHTML = '<div class="single-testimonial mt-30 mb-30 text-center" data-toggle="modal" data-target="#Modal'+img+'"><div class="justify-content-center d-flex" style= "width: auto; height: 100%;"><img id="'+img+'" style= "width: auto; height: 100%; object-fit: cover" src="users/<?php echo $_SESSION['userlogin'];?>/'+img+'" alt="Author" ></div></div> <!-- single column -->';
+        gallery_element.innerHTML = '<div class="single-testimonial mt-30 mb-30 text-center" data-toggle="modal" data-target="#Modal'+img+'"><div class="justify-content-center d-flex" style= "width: auto; height: 100%;"><img id="'+img+'" style= "width: auto; height: 100%; object-fit: cover" src="users/<?php echo $_SESSION['userlogin'];?>/'+img+'" alt="Author" ></div><div id="'+img+'_footer" style=font-weight:bold;margin-top:2em;""> Non pubblicata</div></div> <!-- single column -->';
         gallery_element.classList.add('col-lg-4');
         gallery_row.prepend(gallery_element);
         $("#gallery").slick('refresh');
 
         var modal_element = document.createElement("div");
-        modal_element.innerHTML = '<div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div><div class="modal-body"><img src="assets/images/new.jpg" alt="Author"><div class="modal-footer"><button type="button" onclick="share('+img+')" class="btn btn-secondary" data-dismiss="modal">Share</button><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div></div></div></div>';
+        modal_element.innerHTML = '<div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div><div class="modal-body"><img src="users/<?php echo $_SESSION['userlogin'];?>/'+img+'" alt="Author"><div class="modal-footer" style=" display: flex; justify-content: center;"><button type="button" onclick="share('+img+')" class="btn btn-secondary" data-dismiss="modal">Share</button><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div></div></div></div>';
         modal_element.classList.add('modal');
         modal_element.classList.add('fade');
         modal_element.id = 'Modal'+img;
@@ -593,11 +598,17 @@ if(!isset($_SESSION['userlogin']))
             url: "/php/getgalleryinfo.php"
           }).done(function(result) {
             for (var picture of JSON.parse(result)){
-                let aaa = document.createElement("div");
+                let galleryimage = document.getElementById(picture.pictureID+'_footer');
                 var date = new Date(picture.timestamp.substring(0,18).replace(/-/g,"/"));
-                aaa.innerHTML="Pubblicata! "+date.toLocaleString('en-US')+"-"+picture.likes+' likes!';
+                //galleryimage.innerHTML="Pubblicata! "+date.toLocaleString('en-US')+"-"+picture.likes+' likes!';
+                galleryimage.innerHTML="Pubblicata: "+picture.likes+' likes!';
                 var gallimg = document.getElementById(picture.pictureID);
-                gallimg.parentNode.parentNode.append(aaa);
+                gallimg.parentNode.parentNode.append(galleryimage);
+
+                let gallerymodal = document.getElementById(picture.pictureID+'_modalfooter');
+                gallerymodal.innerHTML = '<div>Pubblicata il '+date.toLocaleString('en-US')+'</div><div><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div>';
+                gallerymodal.style.display="flex";
+                gallerymodal.style.justifyContent="center";
             }
           });
 
@@ -619,7 +630,10 @@ if(!isset($_SESSION['userlogin']))
       }).done(function(o) {
         pictures = JSON.parse(o);
           for (i = 0; i < pictures.length; i++) {
-            $('<div class="bg-white border mt-2"><div><div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom"><div class="d-flex flex-row align-items-center feed-text px-2"><img class="rounded-circle" src="assets/images/carousel.PNG" width="45" height="45"><div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold">'+pictures[i].user+': '+pictures[i].likes+' likes!</span><span class="text-black-50 time">Many seconds ago</span></div></div><div class="feed-icon px-2"><i class="fa fa-ellipsis-v text-black-50"></i></div></div></div><div class="feed-image p-2 px-3 d-flex justify-content-center"><img class="img-fluid img-responsive" src="users/'+pictures[i].user+'/'+pictures[i].pictureID+'" onclick="like(\''+pictures[i].pictureID+'\')"></div><div class="row"><div class="col-sm-2"><div class="heartbox"><input type="checkbox" class="checkbox" id="checkbox_'+i+'" /><label for="checkbox_'+i+'"> <svg id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg"><g id="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)"><path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z" id="heart" fill="#AAB8C2" /> <circle id="main-circ" fill="#E2264D" opacity="0" cx="29.5" cy="29.5" r="1.5" /><g id="heartgroup7" opacity="0" transform="translate(7 6)"><circle id="heart1" fill="#9CD8C3" cx="2" cy="6" r="2" /><circle id="heart2" fill="#8CE8C3" cx="5" cy="2" r="2" /></g><g id="heartgroup6" opacity="0" transform="translate(0 28)"> <circle id="heart1" fill="#CC8EF5" cx="2" cy="7" r="2" /> <circle id="heart2" fill="#91D2FA" cx="3" cy="2" r="2" /></g><g id="heartgroup3" opacity="0" transform="translate(52 28)"> <circle id="heart2" fill="#9CD8C3" cx="2" cy="7" r="2" /> <circle id="heart1" fill="#8CE8C3" cx="4" cy="2" r="2" /></g><g id="heartgroup2" opacity="0" transform="translate(44 6)"><circle id="heart2" fill="#CC8EF5" cx="5" cy="6" r="2" /><circle id="heart1" fill="#CC8EF5" cx="2" cy="2" r="2" /></g><g id="heartgroup5" opacity="0" transform="translate(14 50)"> <circle id="heart1" fill="#91D2FA" cx="6" cy="5" r="2" /> <circle id="heart2" fill="#91D2FA" cx="2" cy="2" r="2" /></g><g id="heartgroup4" opacity="0" transform="translate(35 50)"> <circle id="heart1" fill="#F48EA7" cx="6" cy="5" r="2" /> <circle id="heart2" fill="#F48EA7" cx="2" cy="2" r="2" /></g><g id="heartgroup1" opacity="0" transform="translate(24)"> <circle id="heart1" fill="#9FC7FA" cx="2.5" cy="3" r="2" /><circle id="heart2" fill="#9FC7FA" cx="7.5" cy="2" r="2" /></g></g></svg></label></div></div><div class="col-sm-8">aaa</div><div class="col-sm-2">aaa</div></div></div>').appendTo(feed);
+            $('<div class="bg-white border mt-2"><div><div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom"><div class="d-flex flex-row align-items-center feed-text px-2"><img class="rounded-circle" src="/assets/images/logo_small_icon_only.png" width="45" height="45"><div class="d-flex flex-column flex-wrap ml-2"><span id="'+pictures[i].pictureID+'_span" class="font-weight-bold">'+pictures[i].user+': '+pictures[i].likes+' likes!</span><span class="text-black-50 time">Many seconds ago</span></div></div><div class="feed-icon px-2"><i class="fa fa-ellipsis-v text-black-50"></i></div><div class="heartbox"><input type="checkbox" onclick="like(\''+pictures[i].pictureID+'\',\''+pictures[i].user+'\')" class="checkbox" id="checkbox_'+i+'" /><label for="checkbox_'+i+'"> <svg id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg"><g id="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)"><path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z" id="heart" fill="#AAB8C2" /> <circle id="main-circ" fill="#E2264D" opacity="0" cx="29.5" cy="29.5" r="1.5" /><g id="heartgroup7" opacity="0" transform="translate(7 6)"><circle id="heart1" fill="#9CD8C3" cx="2" cy="6" r="2" /><circle id="heart2" fill="#8CE8C3" cx="5" cy="2" r="2" /></g><g id="heartgroup6" opacity="0" transform="translate(0 28)"> <circle id="heart1" fill="#CC8EF5" cx="2" cy="7" r="2" /> <circle id="heart2" fill="#91D2FA" cx="3" cy="2" r="2" /></g><g id="heartgroup3" opacity="0" transform="translate(52 28)"> <circle id="heart2" fill="#9CD8C3" cx="2" cy="7" r="2" /> <circle id="heart1" fill="#8CE8C3" cx="4" cy="2" r="2" /></g><g id="heartgroup2" opacity="0" transform="translate(44 6)"><circle id="heart2" fill="#CC8EF5" cx="5" cy="6" r="2" /><circle id="heart1" fill="#CC8EF5" cx="2" cy="2" r="2" /></g><g id="heartgroup5" opacity="0" transform="translate(14 50)"> <circle id="heart1" fill="#91D2FA" cx="6" cy="5" r="2" /> <circle id="heart2" fill="#91D2FA" cx="2" cy="2" r="2" /></g><g id="heartgroup4" opacity="0" transform="translate(35 50)"> <circle id="heart1" fill="#F48EA7" cx="6" cy="5" r="2" /> <circle id="heart2" fill="#F48EA7" cx="2" cy="2" r="2" /></g><g id="heartgroup1" opacity="0" transform="translate(24)"> <circle id="heart1" fill="#9FC7FA" cx="2.5" cy="3" r="2" /><circle id="heart2" fill="#9FC7FA" cx="7.5" cy="2" r="2" /></g></g></svg></label></div></div></div><div class="feed-image p-2 px-3 d-flex justify-content-center"><img class="img-fluid img-responsive" src="users/'+pictures[i].user+'/'+pictures[i].pictureID+'" ></div></div></div>').appendTo(feed);
+            console.log(pictures[i].liked);
+            if (pictures[i].liked==1)
+                document.getElementById('checkbox_'+i).checked =true;
           }
       });
 
@@ -664,15 +678,17 @@ if(!isset($_SESSION['userlogin']))
       });
     }
 
-    function like(picture){
+    function like(picture,user){
         $.ajax({
         type: "POST",
         url: "/php/like.php",
         data: { 
-           pictureID : picture
+           pictureID : picture,
         }
-      }).done(function(o) {
-        console.log('done'); 
+      }).done(function(likes) {
+        console.log('done');
+        var likespan = document.getElementById(picture+'_span');
+        likespan.innerHTML = user+': '+likes+' likes!';
       });
     }
 

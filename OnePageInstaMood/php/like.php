@@ -22,10 +22,22 @@ if ($count==0) {
 	$query->execute();
 	$query->close();
 
-	echo "LIKED";
-
 }
 else{
-	echo "ALREADY LIKED";
+	$sql = "DELETE FROM likes WHERE user = ? AND pictureID = ?";
+	$query = $db->prepare($sql);
+	$query->bind_param("ss", $username,$pictureID);
+	$query->execute();
+	$query->close();
+
 }
+
+$sql1 = "SELECT COUNT(pictureID) FROM likes WHERE pictureID = ?";
+$query1 = $db->prepare($sql1);
+$query1->bind_param("s", $pictureID);
+$query1->execute();
+$query1->bind_result($likes);
+$query1->fetch();
+
+echo $likes;
 ?>

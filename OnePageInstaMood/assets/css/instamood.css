@@ -71,6 +71,33 @@
       filter: grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-50deg) saturate(600%) contrast(0.8);
 }
 
+#post-footer {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#like-button-col{
+    justify-content: center;
+    width: 15%;
+    text-align: center;
+    vertical-align: center;
+}
+
+#empty-col{
+    display: block;
+    width: 70%;
+    justify-content: center;
+}
+
+#like-col{
+    justify-content: center;
+    display: block;
+    width: 15%;
+
+}
+
+#
+
  .heartbox {
      position: absolute;
      top: 50%;
@@ -90,6 +117,11 @@
 
  .checkbox {
      display: none
+ }
+
+label {
+    width: 4em;
+    height: 4em;
  }
 
  .checkbox:checked+label svg #heart {
