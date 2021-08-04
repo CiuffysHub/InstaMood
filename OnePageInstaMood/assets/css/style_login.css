@@ -6,6 +6,18 @@ body,html {
 	background: #fff !important;
 }
 
+#wrong_credentials{
+	display: flex;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+}
+
+#wrong_credentials_text{
+	display: table-cell;
+  	vertical-align: middle;
+}
+
 .user_card {
 	height: 400px;
 	width: 350px;
