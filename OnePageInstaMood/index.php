@@ -476,7 +476,21 @@ if(!isset($_SESSION['userlogin']))
 
     <script type="text/javascript">
 
-
+    $('#gallery').slick({
+      infinite: true,
+      slidesToShow: 3,
+      slidesToScroll: 3,
+        responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+      slidesToShow: 1,
+      centerMode: false, /* set centerMode to false to show complete slide instead of 3 */
+      slidesToScroll: 1
+      }
+    }
+   ]    });
+                
         document.addEventListener('DOMContentLoaded', function() {
 
     var button = document.getElementById("takePhotoButton");
