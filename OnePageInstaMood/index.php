@@ -238,6 +238,7 @@ if(!isset($_SESSION['userlogin']))
             
             <div class="row">
                 <div class="col-lg-12">
+                    <span class="prev">indietro</span>
                     <div class="row testimonial-active" id="gallery">
                         <?php 
                         foreach (glob("users/".$_SESSION['userlogin']."/*") as $file) {
@@ -261,6 +262,8 @@ if(!isset($_SESSION['userlogin']))
                         </div>
                     </div> <!-- row -->
                 </div>
+                <span class="next">avanti</span>
+
             </div> <!-- row -->
         </div> <!-- container -->
     </section>
@@ -469,10 +472,10 @@ if(!isset($_SESSION['userlogin']))
     <script src="assets/js/camera_stream.js"></script>
     <!-- <script src="assets/js/mood_filters_preview.js"></script> -->
 
-    <script src="js/adapter.min.js"></script>
-    <script src="js/screenfull.min.js"></script>
-    <script src="js/howler.core.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="assets/js/adapter.min.js"></script>
+    <script src="assets/js/screenfull.min.js"></script>
+    <script src="assets/js/howler.core.min.js"></script>
+    <script src="assets/js/main_template.js"></script>
 
     <script type="text/javascript">
 
@@ -480,6 +483,8 @@ if(!isset($_SESSION['userlogin']))
       infinite: true,
       slidesToShow: 3,
       slidesToScroll: 3,
+      prevArrow: $('.prev'),
+      nextArrow: $('.next'),
         responsive: [
     {
       breakpoint: 768,
