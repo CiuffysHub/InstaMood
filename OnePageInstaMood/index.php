@@ -238,11 +238,10 @@ if(!isset($_SESSION['userlogin']))
             
             <div class="row">
                 <div class="col-lg-12">
-                    <span class="prev">indietro</span>
                     <div class="row testimonial-active" id="gallery">
                         <?php 
                         foreach (glob("users/".$_SESSION['userlogin']."/*") as $file) {
-                            echo '<div class="col-lg-4 col-xs-6">
+                            echo '<div class="slider-item col-lg-4 col-xs-6">
                                 <div class="single-testimonial mt-30 mb-30 text-center" data-toggle="modal" data-target="#Modal'.(basename($file)).'">
                                     <div class="justify-content-center d-flex" style= "width: auto; height: 200px;">
                                         <img id="'.(basename($file)).'" class="gallery-img" style="width: auto; height: 100%; object-fit: cover" src='.$file.' alt="Author">
@@ -253,7 +252,7 @@ if(!isset($_SESSION['userlogin']))
                             </div>';
                         }
                         ?>
-                        <div class="col-lg-4 col-xs-6">
+                        <div class="slider-item col-lg-4 col-xs-6">
                             <div class="single-testimonial mt-30 mb-30 text-center" data-toggle="modal" data-target="#exampleModal1">
                                 <div class="justify-content-center d-flex" style= "width: auto; height: 200px;">
                                     <img style="width: auto; height: 200px; object-fit: cover" src="assets/images/carousel.PNG" alt="Author">
@@ -261,10 +260,9 @@ if(!isset($_SESSION['userlogin']))
                             </div> <!-- single column -->
                         </div>
                     </div> <!-- row -->
+                    <div class="slider-nav"></div>
                 </div>
-                <span class="next">avanti</span>
-
-            </div> <!-- row -->
+            </div>
         </div> <!-- container -->
     </section>
     <!-- Modal markup: https://getbootstrap.com/docs/4.4/components/modal/ -->
@@ -483,8 +481,8 @@ if(!isset($_SESSION['userlogin']))
       infinite: true,
       slidesToShow: 3,
       slidesToScroll: 3,
-      prevArrow: $('.prev'),
-      nextArrow: $('.next'),
+      prevArrow:'',
+      nextArrow:'<div class="row d-flex justify-content-center flex-nowrap"><div><button type="button" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path></svg>Mostra Altre</button></div></div>',
         responsive: [
     {
       breakpoint: 768,
