@@ -520,6 +520,15 @@ if(!isset($_SESSION['userlogin']))
             Fear: 'invert'
         };
 
+    var filters = {
+            Sad: 'grayscale(100%)',
+            Disgust: 'hue-rotate(90deg)',
+            Fear: 'invert(100%)',
+            Angry: 'grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-50deg) saturate(600%) contrast(0.8)',
+            Happy: 'grayscale(0%)',
+            Neutral: 'grayscale(0%)'
+    }
+
         var moods = {
             Neutral: 'undefined',
             Happy: 'Happy',
@@ -530,6 +539,7 @@ if(!isset($_SESSION['userlogin']))
         }
 
         var sentences = {
+            undefined: 'Hai una espressione neutrale &#128529;',
             Neutral: 'Hai una espressione neutrale &#128529;',
             Happy: 'Sei felice &#128513;',
             Sad: 'Sei triste &#128557;',
@@ -575,8 +585,8 @@ if(!isset($_SESSION['userlogin']))
       canvas.setAttribute("height",video.videoHeight+'');
 
       var context = canvas.getContext('2d');
-
-      context.filter = 'classes[mood]';
+      console.log('eccoci');
+      context.filter = filters[mood];
       context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
       var dataURL = canvas.toDataURL();
