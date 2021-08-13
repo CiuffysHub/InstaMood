@@ -136,7 +136,7 @@ if(!isset($_SESSION['userlogin']))
                     <div class="col-lg-4 d-sm-none d-md-block d-none d-sm-block">
                     <div class="single-about d-sm-flex mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1.2s">
                         <div class="about-icon">
-                            <img src="assets/images/icon-1.png" alt="Icon">
+                            <img src="assets/images/face-recognition.png" alt="Icon">
                         </div>
                         <div class="about-content media-body">
                             <h4 class="about-title">Riconosce il Mood</h4>
@@ -145,7 +145,7 @@ if(!isset($_SESSION['userlogin']))
                     </div> <!-- single about -->
                     <div class="single-about d-sm-flex mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1.2s">
                         <div class="about-icon">
-                            <img src="assets/images/icon-1.png" alt="Icon">
+                            <img src="assets/images/laugh.png" alt="Icon">
                         </div>
                         <div class="about-content media-body">
                             <h4 class="about-title">Condividi sul social</h4>
@@ -566,7 +566,7 @@ if(!isset($_SESSION['userlogin']))
 
       var context = canvas.getContext('2d');
 
-      context.filter = "grayscale(1)";
+      context.filter = 'hue-rotate(50%)';
       context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
       var dataURL = canvas.toDataURL();
