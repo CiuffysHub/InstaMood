@@ -132,6 +132,14 @@ if(!isset($_SESSION['userlogin']))
                         </div>
                     </div> <!-- row -->
 
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="section-title text-center pb-20">
+                                <h5 id="mood-display-txt"></h5>
+                            </div> <!-- section title -->
+                        </div>
+                    </div> <!-- row -->
+
                     <div class="row m-0" style="width:100%;" >
                     <div class="col-lg-4 d-sm-none d-md-block d-none d-sm-block">
                     <div class="single-about d-sm-flex mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1.2s">
@@ -522,12 +530,12 @@ if(!isset($_SESSION['userlogin']))
         }
 
         var sentences = {
-            Neutral: 'undefined',
-            Happy: 'Im Happy',
-            Sad: 'Im so sgalleryimaged',
-            Disgust: 'Bleah',
-            Angry: 'Im angryyyy',
-            Fear: 'Help me!'
+            Neutral: 'Hai una espressione neutrale &#128529;',
+            Happy: 'Sei felice &#128513;',
+            Sad: 'Sei triste &#128557;',
+            Disgust: 'Sei disgustato &#129314;',
+            Angry: 'Sei arrabbiato &#128545;',
+            Fear: 'Sei impaurito &#128561;'
         }
 
 
@@ -540,12 +548,14 @@ if(!isset($_SESSION['userlogin']))
         window.addEventListener(CY.modules().FACE_EMOTION.eventName, (evt) => {
         mood = evt.detail.output.dominantEmotion;
         console.log(mood);
+        var displayMood = document.getElementById("mood-display-txt");
 
         for (var c in classes){
             video.classList.remove(classes[c]);
         }
         video.classList.add(classes[mood])
         sentence = sentences[mood];
+        displayMood.innerHTML = sentence;
         });
 
         function idgen(){
@@ -566,7 +576,7 @@ if(!isset($_SESSION['userlogin']))
 
       var context = canvas.getContext('2d');
 
-      context.filter = 'hue-rotate(50%)';
+      context.filter = 'classes[mood]';
       context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
       var dataURL = canvas.toDataURL();
