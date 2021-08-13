@@ -52,7 +52,6 @@ if(!isset($_SESSION['userlogin']))
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"> ======-->
 
 </head>
-
 <body>
     
     <!--====== PRELOADER PART START ======-->
@@ -103,7 +102,7 @@ if(!isset($_SESSION['userlogin']))
                                         <a class="page-scroll" href="#testimonial">GALLERIA</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="page-scroll" href="#share">CONDIVIDI</a>
+                                        <a class="page-scroll" href="#sharesection">CONDIVIDI</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="assets/php/logout.php">LOGOUT</a>
@@ -318,7 +317,7 @@ if(!isset($_SESSION['userlogin']))
 
     <!--====== TESTIMONIAL THREE PART ENDS ======-->
     
-    <section id='share' class="pt-50 pb-30">
+    <section id='sharesection' class="pt-50 pb-30">
         <div class="container mt-4 mb-5">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
@@ -666,9 +665,9 @@ if(!isset($_SESSION['userlogin']))
         url: "/php/feed.php",
       }).done(function(o) {
         pictures = JSON.parse(o);
-          for (i = 0; i < pictures.length; i++) {
-            $('<div class="bg-white border mt-2"><div><div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom"><div class="d-flex flex-row align-items-center feed-text px-2"><img class="rounded-circle" src="/assets/images/logo_small_icon_only.png" width="45" height="45"><div class="d-flex flex-column flex-wrap ml-2"><span id="'+pictures[i].pictureID+'_span" class="font-weight-bold">'+pictures[i].user+': '+pictures[i].likes+' likes!</span><span class="text-black-50 time">Many seconds ago</span></div></div><div class="feed-icon px-2"><i class="fa fa-ellipsis-v text-black-50"></i></div><div class="heartbox"><input type="checkbox" onclick="like(\''+pictures[i].pictureID+'\',\''+pictures[i].user+'\')" class="checkbox" id="checkbox_'+i+'" /><label for="checkbox_'+i+'"> <svg id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg"><g id="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)"><path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z" id="heart" fill="#AAB8C2" /> <circle id="main-circ" fill="#E2264D" opacity="0" cx="29.5" cy="29.5" r="1.5" /><g id="heartgroup7" opacity="0" transform="translate(7 6)"><circle id="heart1" fill="#9CD8C3" cx="2" cy="6" r="2" /><circle id="heart2" fill="#8CE8C3" cx="5" cy="2" r="2" /></g><g id="heartgroup6" opacity="0" transform="translate(0 28)"> <circle id="heart1" fill="#CC8EF5" cx="2" cy="7" r="2" /> <circle id="heart2" fill="#91D2FA" cx="3" cy="2" r="2" /></g><g id="heartgroup3" opacity="0" transform="translate(52 28)"> <circle id="heart2" fill="#9CD8C3" cx="2" cy="7" r="2" /> <circle id="heart1" fill="#8CE8C3" cx="4" cy="2" r="2" /></g><g id="heartgroup2" opacity="0" transform="translate(44 6)"><circle id="heart2" fill="#CC8EF5" cx="5" cy="6" r="2" /><circle id="heart1" fill="#CC8EF5" cx="2" cy="2" r="2" /></g><g id="heartgroup5" opacity="0" transform="translate(14 50)"> <circle id="heart1" fill="#91D2FA" cx="6" cy="5" r="2" /> <circle id="heart2" fill="#91D2FA" cx="2" cy="2" r="2" /></g><g id="heartgroup4" opacity="0" transform="translate(35 50)"> <circle id="heart1" fill="#F48EA7" cx="6" cy="5" r="2" /> <circle id="heart2" fill="#F48EA7" cx="2" cy="2" r="2" /></g><g id="heartgroup1" opacity="0" transform="translate(24)"> <circle id="heart1" fill="#9FC7FA" cx="2.5" cy="3" r="2" /><circle id="heart2" fill="#9FC7FA" cx="7.5" cy="2" r="2" /></g></g></svg></label></div></div></div><div class="feed-image p-2 px-3 d-flex justify-content-center"><img class="img-fluid img-responsive" src="users/'+pictures[i].user+'/'+pictures[i].pictureID+'" ></div></div></div>').appendTo(feed);
-            console.log(pictures[i].liked);
+          for (i = 0; i < pictures.length; i++) {                
+            var date = new Date(pictures[i].timestamp.substring(0,18).replace(/-/g,"/"));
+            $('<div class="bg-white border mt-2"><div><div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom"><div class="d-flex flex-row align-items-center feed-text px-2"><img class="rounded-circle" src="/assets/images/logo_small_icon_only.png" width="45" height="45"><div class="d-flex flex-column flex-wrap ml-2"><span id="'+pictures[i].pictureID+'_span" class="font-weight-bold">'+pictures[i].user+': '+pictures[i].likes+' likes!</span><span class="text-black-50 time">'+date.toLocaleString('en-US')+'</span></div></div><div class="feed-icon px-2"><i class="fa fa-ellipsis-v text-black-50"></i></div><div class="heartbox"><input type="checkbox" onclick="like(\''+pictures[i].pictureID+'\',\''+pictures[i].user+'\')" class="checkbox" id="checkbox_'+i+'" /><label for="checkbox_'+i+'"> <svg id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg"><g id="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)"><path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z" id="heart" fill="#AAB8C2" /> <circle id="main-circ" fill="#E2264D" opacity="0" cx="29.5" cy="29.5" r="1.5" /><g id="heartgroup7" opacity="0" transform="translate(7 6)"><circle id="heart1" fill="#9CD8C3" cx="2" cy="6" r="2" /><circle id="heart2" fill="#8CE8C3" cx="5" cy="2" r="2" /></g><g id="heartgroup6" opacity="0" transform="translate(0 28)"> <circle id="heart1" fill="#CC8EF5" cx="2" cy="7" r="2" /> <circle id="heart2" fill="#91D2FA" cx="3" cy="2" r="2" /></g><g id="heartgroup3" opacity="0" transform="translate(52 28)"> <circle id="heart2" fill="#9CD8C3" cx="2" cy="7" r="2" /> <circle id="heart1" fill="#8CE8C3" cx="4" cy="2" r="2" /></g><g id="heartgroup2" opacity="0" transform="translate(44 6)"><circle id="heart2" fill="#CC8EF5" cx="5" cy="6" r="2" /><circle id="heart1" fill="#CC8EF5" cx="2" cy="2" r="2" /></g><g id="heartgroup5" opacity="0" transform="translate(14 50)"> <circle id="heart1" fill="#91D2FA" cx="6" cy="5" r="2" /> <circle id="heart2" fill="#91D2FA" cx="2" cy="2" r="2" /></g><g id="heartgroup4" opacity="0" transform="translate(35 50)"> <circle id="heart1" fill="#F48EA7" cx="6" cy="5" r="2" /> <circle id="heart2" fill="#F48EA7" cx="2" cy="2" r="2" /></g><g id="heartgroup1" opacity="0" transform="translate(24)"> <circle id="heart1" fill="#9FC7FA" cx="2.5" cy="3" r="2" /><circle id="heart2" fill="#9FC7FA" cx="7.5" cy="2" r="2" /></g></g></svg></label></div></div></div><div class="feed-image p-2 px-3 d-flex justify-content-center"><img class="img-fluid img-responsive" src="users/'+pictures[i].user+'/'+pictures[i].pictureID+'" ></div></div></div>').appendTo(feed);
             if (pictures[i].liked==1)
                 document.getElementById('checkbox_'+i).checked =true;
           }
@@ -715,6 +714,27 @@ if(!isset($_SESSION['userlogin']))
       });
     }
 
+    function share(picture){
+        $.ajax({
+        type: "POST",
+        url: "/php/share.php",
+        data: { 
+           pictureID : picture
+        }
+      }).done(function(o) {
+        console.log('shared'); 
+        let galleryimage = document.getElementById(picture+'_footer');
+        galleryimage.innerHTML="Pubblicata: 0 likes!";
+        var gallimg = document.getElementById(picture);
+        gallimg.parentNode.parentNode.append(galleryimage);
+
+        let gallerymodal = document.getElementById(picture+'_modalfooter');
+        gallerymodal.innerHTML = '<div>Pubblicata adesso!</div><div><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div>';
+        gallerymodal.style.display="flex";
+        gallerymodal.style.justifyContent="center";
+      });
+    }
+
     function like(picture,user){
         $.ajax({
         type: "POST",
@@ -729,18 +749,7 @@ if(!isset($_SESSION['userlogin']))
       });
     }
 
-    function share(picture){
-        $.ajax({
-        type: "POST",
-        url: "/php/share.php",
-        data: { 
-           pictureID : picture
-        }
-      }).done(function(o) {
-        console.log('shared'); 
     
-      });
-    }
 
     </script>
 
