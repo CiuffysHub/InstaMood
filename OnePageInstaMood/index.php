@@ -248,12 +248,23 @@ if(!isset($_SESSION['userlogin']))
                     <div class="row testimonial-active" id="gallery">
                         <?php 
                         foreach (glob("users/".$_SESSION['userlogin']."/*") as $file) {
+                            $m = '';
+                            switch (substr(basename($file),0,1)) {
+                                case '0':$m='undefined';break;
+                                case '1':$m='Neutral';break;
+                                case '2':$m='Happy';break;
+                                case '3':$m='Sad';break;
+                                case '4':$m='Disgust';break;
+                                case '5':$m='Angry';break;
+                                case '6':$m='Fear';break;
+                            }
                             echo '<div class="slider-item col-lg-4 col-xs-6">
                                 <div class="single-testimonial mt-30 mb-30 text-center" data-toggle="modal" data-target="#Modal'.(basename($file)).'">
                                     <div class="justify-content-center d-flex" style= "width: auto; height: 200px;">
                                         <img id="'.(basename($file)).'" class="gallery-img" style="width: auto; height: 100%; object-fit: cover" src='.$file.' alt="Author">
                                     </div>
-                                    <div id="'.(basename($file)).'_footer" style=font-weight:bold;margin-top:2em;""> Non pubblicata
+                                    <div style="margin-top:1em;">'.$m.'</div>
+                                    <div id="'.(basename($file)).'_footer" style="font-weight:bold;margin-top:1em;"> Non pubblicata
                                         </div>
                                 </div> <!-- single column -->
                             </div>';
@@ -519,6 +530,17 @@ if(!isset($_SESSION['userlogin']))
             Fear: 'invert'
         };
 
+
+    var enums = {
+        undefined: '0',
+        Neutral: '1',
+        Happy: '2',
+        Sad: '3',
+        Disgust: '4',
+        Angry: '5',
+        Fear: '6'
+    }
+
     var filters = {
             Sad: 'grayscale(100%)',
             Disgust: 'hue-rotate(90deg)',
@@ -573,7 +595,7 @@ if(!isset($_SESSION['userlogin']))
 
     button.onclick = function(event) {
 
-      var tmpLastSlide = idgen();
+      var tmpLastSlide = ''+enums[mood]+idgen();
 
       $('html,body').animate({
       scrollTop: $("#testimonial").offset().top-70},
@@ -589,13 +611,12 @@ if(!isset($_SESSION['userlogin']))
       context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
       var dataURL = canvas.toDataURL();
-
       $.ajax({
         type: "POST",
         url: "/php/upload_on_server.php",
         data: { 
            imgBase64: dataURL,
-           id : tmpLastSlide
+           id : tmpLastSlide,
         }
       }).done(function(o) {
         console.log('saved'); 
@@ -608,13 +629,13 @@ if(!isset($_SESSION['userlogin']))
 
    function loadPicture(img) {
        var gallery_element = document.createElement("div");
-        gallery_element.innerHTML = '<div class="single-testimonial mt-30 mb-30 text-center" data-toggle="modal" data-target="#Modal'+img+'"><div class="justify-content-center d-flex" style= "width: auto; height: 100%;"><img id="'+img+'" style= "width: auto; height: 100%; object-fit: cover" src="users/<?php echo $_SESSION['userlogin'];?>/'+img+'" alt="Author" ></div><div id="'+img+'_footer" style=font-weight:bold;margin-top:2em;""> Non pubblicata</div></div> <!-- single column -->';
+        gallery_element.innerHTML = '<div class="single-testimonial mt-30 mb-30 text-center" data-toggle="modal" data-target="#Modal'+img+'"><div class="justify-content-center d-flex" style= "width: auto; height: 100%;"><img id="'+img+'" style= "width: auto; height: 100%; object-fit: cover" src="users/<?php echo $_SESSION['userlogin'];?>/'+img+'" alt="Author" ></div><div style="margin-top:1em;">'+Object.keys(enums)[parseInt(img.charAt(0))]+'</div><div id="'+img+'_footer" style="font-weight:bold;margin-top:1em;"> Non pubblicata</div></div> <!-- single column -->';
         gallery_element.classList.add('col-lg-4');
         gallery_row.prepend(gallery_element);
         $("#gallery").slick('refresh');
 
         var modal_element = document.createElement("div");
-        modal_element.innerHTML = '<div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div><div class="modal-body"><img src="users/<?php echo $_SESSION['userlogin'];?>/'+img+'" alt="Author"><div class="modal-footer" style=" display: flex; justify-content: center;"><button type="button" onclick="share('+img+')" class="btn btn-secondary" data-dismiss="modal">Share</button><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div></div></div></div>';
+        modal_element.innerHTML = '<div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div><div class="modal-body"><img src="users/<?php echo $_SESSION['userlogin'];?>/'+img+'" alt="Author"><div class="modal-footer" style=" display: flex; justify-content: center;"><button type="button" onclick="share(\''+img+'\')" class="btn btn-secondary" data-dismiss="modal">Share</button><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div></div></div></div>';
         modal_element.classList.add('modal');
         modal_element.classList.add('fade');
         modal_element.id = 'Modal'+img;
