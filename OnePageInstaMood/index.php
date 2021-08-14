@@ -313,7 +313,7 @@ if(!isset($_SESSION['userlogin']))
                                         </button>
                                       </div>
                                       <div class="modal-body">
-                                            <img style="filter: grayscale(100%);" src="'.$file.'" alt="Author">
+                                            <img src="'.$file.'" alt="Author">
                                       <div class="modal-footer" style=" display: flex; justify-content: center;" id="'.(basename($file)).'_modalfooter">
                                         <button type="button" class="btn btn-secondary" onclick="share(\''.(basename($file)).'\')" data-dismiss="modal">Share</button>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -344,6 +344,9 @@ if(!isset($_SESSION['userlogin']))
                     </div>
                 </div>
                 <div class="col-md-4">
+                    <div class="col-lg-12">
+                        <h4 style="left:1em; top:3em; margin-bottom:1em; margin-top:1em;">Cerca i tuoi amici</h4>
+                    </div>
                     <input type="text" id="myInput" onkeyup="search()" placeholder="Search for names..">
 
                         <ul id="myUL">
