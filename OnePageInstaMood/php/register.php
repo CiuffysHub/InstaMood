@@ -32,6 +32,7 @@
 								</div>
 								<input type="password" id="password" class="form-control input_pass" value="" placeholder="password">
 							</div>
+							<div id="correct-sign-up"></div>
 							
 								<div class="d-flex justify-content-center mt-1 login_container">
 					 	<button type="button" name="button" id="signup" class="btn signup_btn">Sign Up</button>
@@ -51,6 +52,7 @@
 					if(valid){
 						var username = $('#username').val();
 						var password = $('#password').val();
+						$("#correct-sign-up").html("Registrato con successo!");
 					}
 
 					e.preventDefault();

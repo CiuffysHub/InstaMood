@@ -653,7 +653,8 @@ if(!isset($_SESSION['userlogin']))
 
     <script>
 
-    $.ajax({
+    $(document).ready(function() {
+        $.ajax({
             type: "POST",
             url: "/php/getgalleryinfo.php"
           }).done(function(result) {
@@ -671,6 +672,7 @@ if(!isset($_SESSION['userlogin']))
                 gallerymodal.style.justifyContent="center";
             }
           });
+    });
 
     feed = document.getElementById("feed");
 
