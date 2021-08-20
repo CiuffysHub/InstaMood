@@ -250,13 +250,14 @@ if(!isset($_SESSION['userlogin']))
                         foreach (glob("users/".$_SESSION['userlogin']."/*") as $file) {
                             $m = '';
                             switch (substr(basename($file),0,1)) {
-                                case '0':$m='undefined';break;
+                                case '0':$m='Surprise';break;
                                 case '1':$m='Neutral';break;
                                 case '2':$m='Happy';break;
                                 case '3':$m='Sad';break;
                                 case '4':$m='Disgust';break;
                                 case '5':$m='Angry';break;
                                 case '6':$m='Fear';break;
+                                
                             }
                             echo '<div class="slider-item col-lg-4 col-xs-6">
                                 <div class="single-testimonial mt-30 mb-30 text-center" data-toggle="modal" data-target="#Modal'.(basename($file)).'">
@@ -347,7 +348,7 @@ if(!isset($_SESSION['userlogin']))
                     <div class="col-lg-12">
                         <h4 style="left:1em; top:3em; margin-bottom:1em; margin-top:1em;">Cerca i tuoi amici</h4>
                     </div>
-                    <input type="text" id="myInput" onkeyup="search()" placeholder="Search for names..">
+                    <input type="text" id="myInput" onclick="search()" onkeyup="search()" placeholder="Search for names..">
 
                         <ul id="myUL">
                         </ul>
@@ -496,6 +497,7 @@ if(!isset($_SESSION['userlogin']))
     <script src="assets/js/howler.core.min.js"></script>
     <script src="assets/js/main_template.js"></script>
 
+
     <script type="text/javascript">
 
     $('#gallery').slick({
@@ -525,6 +527,7 @@ if(!isset($_SESSION['userlogin']))
     var mood;
 
     var classes = {
+            Surprise: 'saturated',
             Neutral: 'undefined',
             Happy: 'saturated',
             Sad: 'grayscale',
@@ -535,7 +538,7 @@ if(!isset($_SESSION['userlogin']))
 
 
     var enums = {
-        undefined: '0',
+        Surprise: '0',
         Neutral: '1',
         Happy: '2',
         Sad: '3',
@@ -550,10 +553,12 @@ if(!isset($_SESSION['userlogin']))
             Fear: 'invert(100%)',
             Angry: 'grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-50deg) saturate(600%) contrast(0.8)',
             Happy: 'grayscale(0%)',
-            Neutral: 'grayscale(0%)'
+            Neutral: 'grayscale(0%)',
+            Surprise: 'grayscale(0%)'
     }
 
         var moods = {
+            Surprise: 'Surprise',
             Neutral: 'undefined',
             Happy: 'Happy',
             Sad: 'Sad',
@@ -563,6 +568,7 @@ if(!isset($_SESSION['userlogin']))
         }
 
         var sentences = {
+            Surprise: 'Sei sorpreso &#128562;',
             undefined: 'Hai una espressione neutrale &#128529;',
             Neutral: 'Hai una espressione neutrale &#128529;',
             Happy: 'Sei felice &#128513;',
@@ -714,10 +720,11 @@ if(!isset($_SESSION['userlogin']))
         names=JSON.parse(o);
         $(ul).empty();
       // Loop through all list items, and hide those who don't match the search query
+      j=0;
       for (i = 0; i < names.length; i++) {
-        if (names[i].toUpperCase().indexOf(filter) > -1) {
+        if (names[i].toUpperCase().indexOf(filter) > -1 && j<6) {
           $('<li><div style="display: flex;"><p style="width: 80%;" href="#">'+names[i]+'</p><button onclick="follow(\''+names[i]+'\')">Follow</button></div></li>').appendTo(ul);
-
+          j++;
         }
       }
       });
@@ -775,9 +782,13 @@ if(!isset($_SESSION['userlogin']))
       });
     }
 
+
     
 
     </script>
+
+
+
 
 </body>
 
