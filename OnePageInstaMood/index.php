@@ -95,7 +95,7 @@ if(!isset($_SESSION['userlogin']))
 
                             <div class="collapse navbar-collapse sub-menu-bar" id="navbarEight">
                                 <ul class="navbar-nav ml-auto">
-                                    <li class="nav-item active">
+                                    <li class="nav-item ">
                                         <a class="page-scroll" href="#home">SCATTA</a>
                                     </li>
                                     <li class="nav-item">
@@ -147,7 +147,7 @@ if(!isset($_SESSION['userlogin']))
                         </div>
                         <div class="about-content media-body">
                             <h4 class="about-title">Riconosce il Mood</h4>
-                            <p class="text">Poorly designed presentations are a thing of the past. Create beautiful and high-quality content that is aligned.</p>
+                            <p class="text">Divertiti con i tuoi amici a sfidare la nostra intelligenza artificiale,cerca di collezionare tutte le emozioni e scopri se sei un vero attore!</p>
                         </div>
                     </div> <!-- single about -->
                     <div class="single-about d-sm-flex mt-30 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1.2s">
@@ -156,7 +156,7 @@ if(!isset($_SESSION['userlogin']))
                         </div>
                         <div class="about-content media-body">
                             <h4 class="about-title">Condividi sul social</h4>
-                            <p class="text">Poorly designed presentations are a thing of the past. Create beautiful and high-quality content that is aligned.</p>
+                            <p class="text">Dimostra ai tuoi amici che il grande schermo ti aspetta!COndividi con loro le tue foto, e metti like alle più belle!</p>
                         </div>
                     </div> <!-- single about -->
                     </div>

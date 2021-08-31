@@ -44,10 +44,6 @@
 								<input type="password" id="password" class="form-control input_pass" value="" placeholder="password">
 							</div>
 							<div class="form-group">
-								<div class="custom-control custom-checkbox">
-									<input type="checkbox" class="custom-control-input" id="customControlInline">
-									<label class="custom-control-label" for="customControlInline">Remember me</label>
-								</div>
 
 							</div>
 								<div id='wrong_credentials'></div>
@@ -61,10 +57,10 @@
 			
 					<div class="mt-4">
 						<div class="d-flex justify-content-center links">
-							Don't have an account? <a href="register.php" class="ml-2">Sign Up</a>
+							Non hai un account? <a href="register.php" class="ml-2">Registrati!</a>
 						</div>
 						<div class="d-flex justify-content-center links">
-							<a href="#">Forgot your password?</a>
+							<a href="#">Hai dimenticato la password?</a>
 						</div>
 					</div>
 				</div>
@@ -93,7 +89,7 @@
 								setTimeout(' window.location.href = "/index.php"', 2000)
 							}
 							else{
-								document.getElementById('wrong_credentials').innerHTML = 'Wrong Credentials!';								
+								document.getElementById('wrong_credentials').innerHTML = 'Credenziali errate!';								
 							}
 						},
 						error: function(data) {

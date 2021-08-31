@@ -6,7 +6,6 @@
 
 */
 
-var takeSnapshotUI = createClickFeedbackUI();
 
 var video;
 var takePhotoButton;
@@ -51,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
     navigator.mediaDevices.getUserMedia &&
     navigator.mediaDevices.enumerateDevices
   ) {
+    console.log("dentro");
     // first we call getUserMedia to trigger permissions
     // we need this before deviceCount, otherwise Safari doesn't return all the cameras
     // we need to have the number in order to display the switch front/back button
@@ -93,6 +93,7 @@ function initCameraUI() {
   takePhotoButton = document.getElementById('takePhotoButton');
   toggleFullScreenButton = document.getElementById('toggleFullScreenButton');
   switchCameraButton = document.getElementById('switchCameraButton');
+ 
 
   // https://developer.mozilla.org/nl/docs/Web/HTML/Element/button
   // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_button_role
@@ -137,6 +138,7 @@ function initCameraUI() {
     switchCameraButton.style.display = 'block';
 
     switchCameraButton.addEventListener('click', function () {
+      console.log("bottone reverse funziona");
       if (currentFacingMode === 'environment') currentFacingMode = 'user';
       else currentFacingMode = 'environment';
       console.log(currentFacingMode);
@@ -265,28 +267,3 @@ function takeSnapshot() {
 // eg. var takeSnapshotUI = createClickFeedbackUI();
 // takeSnapshotUI();
 
-function createClickFeedbackUI() {
-  // in order to give feedback that we actually pressed a button.
-  // we trigger a almost black overlay
-  var overlay = document.getElementById('video_overlay'); //.style.display;
-
-  // sound feedback
-  var sndClick = new Howl({ src: ['snd/click.mp3'] });
-
-  var overlayVisibility = false;
-  var timeOut = 80;
-
-  function setFalseAgain() {
-    overlayVisibility = false;
-    overlay.style.display = 'none';
-  }
-
-  return function () {
-    if (overlayVisibility == false) {
-      sndClick.play();
-      overlayVisibility = true;
-      overlay.style.display = 'block';
-      setTimeout(setFalseAgain, timeOut);
-    }
-  };
-}

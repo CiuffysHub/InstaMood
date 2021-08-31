@@ -16,7 +16,7 @@
 			<div class="d-flex justify-content-center h-100">
 				<div class="user_card">
 					<div id="reg-title" class="justify-content-center d-flex ">
-						<h2>Don't have an account?</h2>
+						<h2>Non hai un account?</h2>
 					</div>
 					<div class="d-flex justify-content-center form_container">
 						<form>
