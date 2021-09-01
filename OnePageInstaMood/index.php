@@ -247,8 +247,10 @@ if(!isset($_SESSION['userlogin']))
                 <div class="col-lg-12">
                     <div class="row testimonial-active" id="gallery">
                         <?php 
+                        $cnt = 0;
                         foreach (glob("users/".$_SESSION['userlogin']."/*") as $file) {
                             $m = '';
+                            $cnt = $cnt+1;
                             switch (substr(basename($file),0,1)) {
                                 case '0':$m='Surprise';break;
                                 case '1':$m='Neutral';break;
@@ -270,14 +272,32 @@ if(!isset($_SESSION['userlogin']))
                                 </div> <!-- single column -->
                             </div>';
                         }
-                        ?>
-                        <div class="slider-item col-lg-4 col-xs-6">
+                        if ($cnt<3)
+                        echo '<div class="slider-item col-lg-4 col-xs-6">
                             <div class="single-testimonial mt-30 mb-30 text-center" data-toggle="modal" data-target="#exampleModal1">
                                 <div class="justify-content-center d-flex" style= "width: auto; height: 200px;">
-                                    <img style="width: auto; height: 200px; object-fit: cover" src="assets/images/carousel.PNG" alt="Author">
+                                    <img style="width: auto; height: 200px; object-fit: cover" src="assets/images/carousel1.PNG" alt="Author">
                                 </div>
                             </div> <!-- single column -->
-                        </div>
+                        </div>';
+                        if($cnt<2)
+                        echo '<div class="slider-item col-lg-4 col-xs-6">
+                                <div class="single-testimonial mt-30 mb-30 text-center" data-toggle="modal" data-target="#exampleModal1">
+                                    <div class="justify-content-center d-flex" style= "width: auto; height: 200px;">
+                                        <img style="width: auto; height: 200px; object-fit: cover" src="assets/images/carousel2.PNG" alt="Author">
+                                    </div>
+                                </div> <!-- single column -->
+                            </div>';
+                        if($cnt<1)
+                        echo '<div class="slider-item col-lg-4 col-xs-6">
+                            <div class="single-testimonial mt-30 mb-30 text-center" data-toggle="modal" data-target="#exampleModal1">
+                                <div class="justify-content-center d-flex" style= "width: auto; height: 200px;">
+                                    <img style="width: auto; height: 200px; object-fit: cover" src="assets/images/carousel3.PNG" alt="Author">
+                                </div>
+                            </div> <!-- single column -->
+                        </div>';
+                        ?>
+                        
                     </div> <!-- row -->
                     <div class="slider-nav"></div>
                 </div>
@@ -510,11 +530,9 @@ if(!isset($_SESSION['userlogin']))
     {
       breakpoint: 768,
       settings: {
-      infinite: true,
       slidesToShow: 1,
       centerMode: false, /* set centerMode to false to show complete slide instead of 3 */
-      slidesToScroll: 1,
-      nextArrow:'<div class="row d-flex justify-content-center flex-nowrap"><div><button type="button" class="btn btn-primary" style="background-color:#ffb6c0; border-color:#ffb6c0;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-arrow-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"></path></svg>Mostra Altre</button></div></div>'
+      slidesToScroll: 1
       }
     }
    ]    });
