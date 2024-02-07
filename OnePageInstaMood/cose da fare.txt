@@ -1,4 +1,0 @@
-Instamood:
-add info di log
-feedback di signup
-modal con filtro giusto
