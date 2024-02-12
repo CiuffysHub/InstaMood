@@ -105,7 +105,7 @@ if(!isset($_SESSION['userlogin']))
                                         <a class="page-scroll" href="#sharesection">CONDIVIDI</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="assets/php/logout.php">LOGOUT</a>
+                                        <a href="php/logout.php">LOGOUT</a>
                                     </li>
                                 </ul>
                             </div>
@@ -212,7 +212,7 @@ if(!isset($_SESSION['userlogin']))
                     <li><a href="#">SERVICES</a></li>
                     <li><a href="#">RESOURCES</a></li>
                     <li><a href="#">CONTACT</a></li>
-                    <li><a href="assets/php/logout.php">LOGOUT</a></li>
+                    <li><a href="php/logout.php">LOGOUT</a></li>
 
 
                 </ul>

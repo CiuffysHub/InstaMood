@@ -1,9 +1,9 @@
 <?php
 
-$db_host = '31.11.39.15';
-$db_user = 'Sql1495400';
-$db_pass = 'Al3ss106B3ll0!';
-$db_name = 'Sql1495400_2';
+$db_host = '[IP_ADDRESS_HERE]';
+$db_user = '[USERNAME_HERE]';
+$db_pass = '[PASSWORD_HERE]';
+$db_name = '[DATABASE_NAME_HERE]';
 
 $db = new mysqli($db_host,$db_user,$db_pass,$db_name);
 
